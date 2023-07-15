@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block titleBlock %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap">
+    {% block jsBlock %}
+
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <div><a href="">Logo</a></div><div><a href="">Мужское</a></div><div><a href="">Женское</a></div>
+        <div class="searchDiv"><input type="text" placeholder="Найти"><a href=""><i class="fas fa-search"></i></a></div>
+        <div><a href=""><i class="far fa-user-circle"></i></a></div><div><a href=""><i class="far fa-heart"></i></a></div><div><a href=""><i class="fas fa-shopping-cart"></i></a></div>
+    </header>
+    <main class="main-part">
+        {% block bodyBlock %}
+
+        {% endblock %}
+    </main>
+    <footer>
+        <div class="column">
+            <a href=""><span class="title">Каталог</span></a><br>
+            <a href=""><span class="title">О магазине</span></a><br>
+            <a href=""><span class="text">О нас</span></a><br>
+            <a href=""><span class="text">Отзывы</span></a><br>
+            <a href=""><span class="text">Политика конфиденциальности</span></a><br>
+            <a href=""><span class="text">Бренды</span></a><br>
+            <a href=""><span class="title">Вакансии</span></a><br>
+        </div>
+        <div class="column">
+            <span class="title">Интересное</span><br>
+            <a href=""><span class="text">Новости</span></a><br>
+            <a href=""><span class="text">Статьи</span></a><br>
+        </div>
+        <div class="column">
+            <span class="title">Оплата</span><br>
+            <span class="text">Рассрочка</span><br>
+            <span class="text">Оплата при получении</span><br>
+            <span class="text">Оплата картой</span><br>
+            <span class="title">Карточки</span><br>
+            <a href=""><span class="text">Карта постоянного клиента</span></a><br>
+            <a href=""><span class="text">Скидочные карты</span></a><br>
+        </div>
+        <div class="column">
+            <span class="title">Способы получения товара</span><br>
+            <a href=""><span class="text">Самовывоз</span></a><br>
+            <a href=""><span class="text">Доставка</span></a><br>
+            <span class="title">Гарантия</span><br>
+            <a href=""><span class="text">Гарантийные обязательства</span></a><br>
+            <a href=""><span class="text">Возврат товара</span></a><br>
+        </div>
+        <div class="column">
+            <span class="title">Контакты</span><br>
+            <span class="text">Круглосуточная обработка заказов</span><br>
+            <a href=""><span class="text"><i class="fas fa-egg"></i> +375 33 764-77-45 </span></a><br>
+            <a href=""><span class="text">:) +375 25 764-77-45 </span></a><br>
+            <a href=""><span class="text"><i class="fab fa-telegram-plane"></i> +375 25 764-77-45 </span></a><br>
+        </div>
+        <div class="column">
+            <span class="title">Соц. сети</span><br>
+            <a href=""><span class="text"><i class="fab fa-telegram-plane"></i></span></a>
+            <a href=""><span class="text"><i class="fab fa-vk"></i></span></a>
+            <a href=""><span class="text"><i class="fab fa-instagram"></i></span></a>
+            <a href=""><span class="text"><i class="fab fa-facebook-square"></i></span></a>
+            <a href=""><span class="text"><i class="fab fa-twitter"></i></span></a><br>
+            <a href=""><div class="info_card">
+                <span class="text">Отзывов:</span><br>
+                <span class="title">3333</span>
+            </div></a><br>
+            <a href=""><div class="info_card">
+                <span class="text">Рейтинг:</span><br>
+                <span class="title">4.5</span>
+            </div></a>
+        </div>
+    </footer>
+    <script type="text/javascript" src="{% static 'main/js/script.js' %}"></script>
+</body>
+</html>

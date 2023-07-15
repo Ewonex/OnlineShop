@@ -1,0 +1,64 @@
+{% extends 'main/loyaout.html' %}
+{% block titleBlock %} Главная страница {% endblock %}
+    {% block jsBlock %}
+      <script>
+
+      </script>
+    {% endblock %}
+{% block bodyBlock %}
+    <div class="slideshow-container">
+        <div class="mySlide fade">
+            <img src="http://via.placeholder.com/800x400/" alt="1" style="width: 100%">
+            <div class="textOfSlider">1</div>
+        </div>
+        <div class="mySlide fade">
+            <img src="http://via.placeholder.com/800x400/" alt="2" style="width: 100%">
+            <div class="textOfSlider">2</div>
+        </div>
+        <div class="mySlide fade">
+            <img src="http://via.placeholder.com/800x400/" alt="3" style="width: 100%">
+            <div class="textOfSlider">3</div>
+        </div>
+        <a class="prev" onclick="plusSlide(-1)">&#10094</a>
+        <a class="next" onclick="plusSlide(1)">&#10095</a>
+
+    </div>
+    <br>
+    <div style="text-align: center">
+        <span class="dot active" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+
+    <div class="infoCards">
+        <div class="card">
+          <div class="container">
+            <h4><a href=""><i class="fas fa-handshake"></i> О нас</a></h4>
+          </div>
+        </div>
+        <div class="card">
+          <div class="container">
+            <h4><a href=""><i class="far fa-newspaper"></i> Новости</a></h4>
+          </div>
+        </div>
+        <div class="card">
+          <div class="container">
+            <h4><a href=""><i class="fas fa-percent"></i> Скидки</a></h4>
+          </div>
+        </div>
+        <div class="card">
+          <div class="container">
+            <h4><a href=""><i class="far fa-thumbs-up"></i> Лучшие</a></h4>
+          </div>
+        </div>
+        <div class="card">
+          <div class="container">
+            <h4><a href=""><i class="fas fa-star-half-alt"></i> Отзывы</a></h4>
+          </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
