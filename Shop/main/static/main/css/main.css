@@ -45,6 +45,7 @@ header.searchDiv{
     font-size: 24px;
 }
 header .searchDiv input {
+    box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
     margin-right: 5px;
     display: inline-block;
     height: 24px;
@@ -58,6 +59,10 @@ header .searchDiv input {
     text-align: left;
 }
 
+header .searchDiv input:active{
+    transition: all .4s ease;
+    transform: scale(1.01);
+}
 
 
 footer {
@@ -110,6 +115,12 @@ footer .info_card {
     max-width: 1000px;
     position: relative;
     margin: auto;
+}
+.slideshow-container img {
+    border-radius: 5px;
+    max-height: 500px;
+    max-width:  1000px;
+    object-fit: cover;
 }
 
 .prev, .next {
@@ -190,4 +201,34 @@ footer .info_card {
 
 .infoCards .container {
     padding: 2px 16px;
+}
+
+.registrationDiv {
+
+}
+
+.registrationDiv input[type=text], input[type=email], input[type=password], input[type=number], select, input[type=file], button{
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    border: 0;
+    width: 200px;
+    box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
+}
+
+.registrationDiv input:active{
+    transition: all .4s ease;
+    transform: scale(1.05);
+}
+
+.registrationDiv button {
+    background-color: white;
+}
+
+.registrationDiv button:hover {
+    transition: all .4s ease;
+    transform: scale(1.05);
+    color: #eb5959;
+    background-color: #f8ecec;
 }

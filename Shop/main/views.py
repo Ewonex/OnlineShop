@@ -5,3 +5,9 @@ def index(request):
 
     }
     return render(request, 'main/index.html', data)
+
+def authorization(request):
+    data = {
+
+    }
+    return render(request, 'main/authorization.html', data)
