@@ -11,3 +11,9 @@ def authorization(request):
 
     }
     return render(request, 'main/authorization.html', data)
+
+def registration(request):
+    data = {
+
+    }
+    return render(request, 'main/registration.html', data)
