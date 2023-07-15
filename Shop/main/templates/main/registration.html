@@ -1,0 +1,19 @@
+{% extends 'main/loyaout.html' %}
+{% block titleBlock %} Регистрация {% endblock %}
+    {% block jsBlock %}
+      <script>
+
+      </script>
+    {% endblock %}
+{% block bodyBlock %}
+    <div class="registrationDiv">
+        <form>
+            <h2>Регистрация</h2>
+            <input type="text" placeholder="Логин"><br>
+            <input type="email" placeholder="Email"><br>
+            <input type="password" placeholder="Пароль"><br>
+            <input type="password" placeholder="Повтор пароля"><br>
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+    </div>
+{% endblock %}
