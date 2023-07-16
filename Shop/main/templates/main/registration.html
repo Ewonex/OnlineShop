@@ -7,13 +7,15 @@
     {% endblock %}
 {% block bodyBlock %}
     <div class="registrationDiv">
-        <form>
-            <h2>Регистрация</h2>
-            <input type="text" placeholder="Логин"><br>
-            <input type="email" placeholder="Email"><br>
-            <input type="password" placeholder="Пароль"><br>
-            <input type="password" placeholder="Повтор пароля"><br>
+        <h2>Регистрация</h2>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Логин" required>{{ form.username.errors }}<br>
+            <input type="email" name="email" placeholder="Email" required>{{ form.email.errors }}<br>
+            <input type="password" name="password1" placeholder="Пароль" required>{{ form.password1.errors }}<br>
+            <input type="password" name="password2" placeholder="Повтор пароля" required>{{ form.password2.errors }}<br>
             <button type="submit">Зарегистрироваться</button>
         </form>
+        <span> {{ error }} </span>
     </div>
 {% endblock %}
