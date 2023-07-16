@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 from .models import User
 from .forms import RegistrationForm
@@ -44,5 +44,8 @@ def authorization(request):
             error = 'Неверное имя пользователя или пароль'
             return render(request, 'main/authorization.html', {'error': error})
     else:
-        error = 'ошибка поста'
-        return render(request, 'main/authorization.html', {'error': error})
+        return render(request, 'main/authorization.html')
+
+def logout_user(request):
+    logout(request)
+    return redirect('main_page')

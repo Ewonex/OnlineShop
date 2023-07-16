@@ -16,7 +16,14 @@
     <header>
         <div><a href="{% url 'main_page' %}">Logo</a></div><div><a href="">Мужское</a></div><div><a href="">Женское</a></div>
         <div class="searchDiv"><input type="text" placeholder="Найти"><a href=""><i class="fas fa-search"></i></a></div>
-        <div><a href="{% url 'authorization_page' %}"><i class="far fa-user-circle"></i></a></div><div><a href=""><i class="far fa-heart"></i></a></div><div><a href=""><i class="fas fa-shopping-cart"></i></a></div>
+        {% if request.user.is_authenticated %}
+            <div><a href="{% url 'authorization_page' %}"><i class="far fa-user-circle"></i></a></div><div><a href=""><i class="far fa-heart"></i></a></div><div><a href=""><i class="fas fa-shopping-cart"></i></a></div><div><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i></a></div>
+
+        {% else %}
+            <div><a href="{% url 'authorization_page' %}">Войти</a></div>
+            <div><a href="{% url 'registration_page' %}">Регистрация</a></div>
+        {% endif %}
+
     </header>
     <main class="main-part">
         {% block bodyBlock %}
