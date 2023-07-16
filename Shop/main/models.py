@@ -3,7 +3,6 @@ from django.contrib.auth.models import AbstractUser, Permission, Group
 
 
 class User(AbstractUser):
-    username = models.CharField('Логин', max_length=20)
     password = models.CharField('Пароль', max_length=20)
     email = models.CharField('Email', max_length=30)
     USERNAME_FIELD = 'username'

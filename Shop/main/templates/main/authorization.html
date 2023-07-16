@@ -7,12 +7,16 @@
     {% endblock %}
 {% block bodyBlock %}
     <div class="registrationDiv">
-        <form>
+        <form method="post">
             <h2>Авторизация</h2>
-            <input type="text" placeholder="Логин"><br>
-            <input type="password" placeholder="Пароль"><br>
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Логин" required>{{ form.username.errors }}<br>
+            <input type="password" name="password" placeholder="Пароль" required>{{ form.password.errors }}<br>
             <button type="submit">Войти</button>
         </form>
+        {% if error|length > 0 %}
+            <span> {{ error }} </span><br>
+        {% endif %}
         <span style="font-size: 15px;">
             <a href="{% url 'registration_page' %}">Зарегистрироваться</a><br>
             <a href="">Забыли пароль?</a><br>

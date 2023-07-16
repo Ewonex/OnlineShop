@@ -16,6 +16,9 @@
             <input type="password" name="password2" placeholder="Повтор пароля" required>{{ form.password2.errors }}<br>
             <button type="submit">Зарегистрироваться</button>
         </form>
-        <span> {{ error }} </span>
+        {% if error|length > 0 %}
+            <span> {{ error }} </span>
+        {% endif %}
+
     </div>
 {% endblock %}

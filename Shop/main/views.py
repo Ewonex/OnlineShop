@@ -1,5 +1,7 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
+from django.contrib.auth import authenticate, login
 
 from .models import User
 from .forms import RegistrationForm
@@ -11,18 +13,12 @@ def index(request):
     }
     return render(request, 'main/index.html', data)
 
-def authorization(request):
-    data = {
-
-    }
-    return render(request, 'main/authorization.html', data)
-
 def registration(request):
     error = []
     if request.method == "POST":
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            form.save()#Сохранение в таблице
+            form.save()
             return redirect('/authorization')
         else:
             for field, errors in form.errors.items():
@@ -35,3 +31,18 @@ def registration(request):
         'error': error
     }
     return render(request, 'main/registration.html', data)
+
+def authorization(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('main_page')
+        else:
+            error = 'Неверное имя пользователя или пароль'
+            return render(request, 'main/authorization.html', {'error': error})
+    else:
+        error = 'ошибка поста'
+        return render(request, 'main/authorization.html', {'error': error})
