@@ -49,3 +49,9 @@ def authorization(request):
 def logout_user(request):
     logout(request)
     return redirect('main_page')
+
+def catalogShow(request):
+    data = {
+
+    }
+    return render(request, 'main/catalog.html', data)
