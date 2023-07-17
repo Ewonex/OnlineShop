@@ -3,10 +3,12 @@ from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
 
-from .models import User
+from .models import User, Item
 from .forms import RegistrationForm
 from django.shortcuts import render, redirect
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
+
+
 def index(request):
     data = {
 
@@ -51,7 +53,10 @@ def logout_user(request):
     return redirect('main_page')
 
 def catalogShow(request):
+    items = Item.objects.order_by('id')
+    for item in items:
+        item.discount_price = item.price * ((100-item.discount)/100)
     data = {
-
+        'items': items
     }
     return render(request, 'main/catalog.html', data)

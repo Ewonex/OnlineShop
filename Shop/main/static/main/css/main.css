@@ -186,7 +186,7 @@ footer .info_card {
     text-align: center;
 }
 
-.infoCards .card {
+.infoCards .card-info {
     display: inline-block;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
@@ -195,7 +195,7 @@ footer .info_card {
     margin-right: 10px;
 }
 
-.infoCards .card:hover {
+.infoCards .card-info:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
