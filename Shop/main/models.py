@@ -35,6 +35,7 @@ class Item(models.Model):
     description = models.CharField('Описание товара', max_length=150)
     pic = models.ImageField('Картинка товара')
 
+
     def __str__(self):
         return self.name
 

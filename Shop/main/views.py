@@ -53,10 +53,13 @@ def logout_user(request):
     return redirect('main_page')
 
 def catalogShow(request):
-    items = Item.objects.order_by('id')
-    for item in items:
-        item.discount_price = item.price * ((100-item.discount)/100)
-    data = {
-        'items': items
-    }
-    return render(request, 'main/catalog.html', data)
+    if request.method == 'POST' and request.user.is_anonymous:
+        return redirect('/authorization')
+    else:
+        items = Item.objects.order_by('id')
+        for item in items:
+            item.discount_price = item.price * ((100-item.discount)/100)
+        data = {
+            'items': items
+        }
+        return render(request, 'main/catalog.html', data)

@@ -11,32 +11,35 @@
 
 
 <div class="productShow">
-      {% for item in items %}
-    <div style="display: inline-block; margin-right: 16px;">
-        <div class="card">
-          <div class="card__top">
-            <a href="#" class="card__image">
-              <img
-                src="{{ item.pic.url }}"
-                alt="{{ item.name }}"
-              />
-            </a>
-            <div class="card__label">-{{ item.discount }}%</div>
-          </div>
-          <div class="card__bottom">
-            <div class="card__prices">
-                <div class="card__price card__price--discount">
-                  {{ item.discount_price }}
+{% for item in items %}
+    <form method="post" style="display: inline-block; margin-right: 16px; margin-bottom: 10px;">
+        {% csrf_token %}
+        <div >
+            <div class="card">
+              <div class="card__top">
+                <a href="#" class="card__image">
+                  <img
+                    src="{{ item.pic.url }}"
+                    alt="{{ item.name }}"
+                  />
+                </a>
+                <div class="card__label">-{{ item.discount }}%</div>
+              </div>
+              <div class="card__bottom">
+                <div class="card__prices">
+                    <div class="card__price card__price--discount">
+                      {{ item.discount_price }}
+                    </div>
+                  <div class="card__price card__price--common">{{ item.price }}</div>
                 </div>
-              <div class="card__price card__price--common">{{ item.price }}</div>
+                <a href="#" class="card__title">
+                  {{ item.description }}
+                </a>
+                <button class="card__add" type="submit">В корзину</button>
+              </div>
             </div>
-            <a href="#" class="card__title">
-              {{ item.description }}
-            </a>
-            <button class="card__add">В корзину</button>
-          </div>
         </div>
-    </div>
+    </form>
 {% endfor %}
 </div>
 

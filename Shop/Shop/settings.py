@@ -24,8 +24,10 @@ SECRET_KEY = 'django-insecure-q3kju=a05jvl!=uxt^ck2=^%o0ge%4)t)swrm+u#q5mqvyc48%
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#DEBUG = False
 
-ALLOWED_HOSTS = [ '46.101.207.123:8001' ]
+
+ALLOWED_HOSTS = [ '46.101.207.123:8001', '127.0.0.1' ]
 
 
 # Application definition
@@ -116,7 +118,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+#STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#/webapps/ewonex/OnlineShop/OnlineShop/collected_static
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
