@@ -1,0 +1,379 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
+body{
+    background: #ffffff;
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    color: #2c2c2c;
+    text-decoration: none;
+}
+a:hover {
+    transition: all .4s ease;
+    color: #eb5959;
+}
+header {
+    background: #2c2c2c;
+    width: 100vw;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 0px;
+}
+header div {
+    height: 50px;
+    border-right: 2px solid #ffffff;
+    display: inline-block;
+    padding: 10px;
+    text-align: center;
+    min-width: 66px;
+}
+header div a {
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+}
+header div a:hover {
+    color: #eb5959;
+    transition: all .4s ease;
+}
+header .searchDiv {
+    width: 70%;
+}
+header.searchDiv{
+    font-size: 24px;
+}
+header .searchDiv input {
+    box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
+    margin-right: 5px;
+    display: inline-block;
+    height: 24px;
+    width: 95%;
+    font-size: 16px;
+    background: #f0f0f0;
+    border-radius: 10px 10px 10px 10px;
+    border: 0px solid White;
+    padding: 1px;
+    padding-left: 20px;
+    text-align: left;
+}
+
+header .searchDiv input:active{
+    transition: all .4s ease;
+    transform: scale(1.01);
+}
+
+
+footer {
+    border-top: 2px solid #2c2c2c;
+    width: 100vw;
+    padding: 50px;
+    text-align: center;
+}
+
+footer .column {
+
+    vertical-align: top;
+    display: inline-block;
+    margin-right: 20px;
+    min-height: 50px;
+    width: 15%;
+    text-align: left;
+}
+footer a {
+    text-decoration: none;
+    color: #2c2c2c;
+}
+footer a:hover {
+    color: #eb5959;
+    transition: all .4s ease;
+}
+footer .title {
+    font-size: 20px;
+    font-weight: bold;
+}
+footer .text {
+    font-size: 16px;
+}
+footer .info_card {
+    margin-top: 5px;
+    display: inline-block;
+    width: 100px;
+    height: 60px;
+    border: 1px solid #2c2c2c;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.main-part {
+    padding: 100px;
+}
+
+
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+.slideshow-container img {
+    border-radius: 5px;
+    max-height: 500px;
+    max-width:  1000px;
+    object-fit: cover;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.textOfSlider {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+.dot {
+    cursor: pointer;
+    height: 13px;
+    width: 13px;
+    display: inline-block;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    transition: background-color 0.6s ease;
+}
+
+.active, dot:hover {
+    background-color: #717171;
+}
+
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+@-webkit-keyframes fade {
+    from{opacity: .4}
+    to{opacity: 1}
+}
+@keyframes fade {
+    from{opacity: .4}
+    to{opacity: 1}
+}
+
+.infoCards{
+    margin-top: 30px;
+    text-align: center;
+}
+
+.infoCards .card-info {
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.infoCards .card-info:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.infoCards .container {
+    padding: 2px 16px;
+}
+
+.registrationDiv {
+
+}
+
+.registrationDiv input[type=text], input[type=email], input[type=password], input[type=number], select, input[type=file], button{
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    border: 0;
+    width: 200px;
+    box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
+}
+
+.registrationDiv input:active{
+    transition: all .4s ease;
+    transform: scale(1.05);
+}
+
+.registrationDiv button {
+    background-color: white;
+}
+
+.registrationDiv button:hover {
+    transition: all .4s ease;
+    transform: scale(1.05);
+    color: #eb5959;
+    background-color: #f8ecec;
+}
+
+.productShow {
+    /* background-color: #717171; */
+}
+
+.card {
+  width: 225px;
+  min-height: 350px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column; /* Размещаем элементы в колонку */
+  border-radius: 4px;
+  transition: 0.2s;
+  position: relative;
+}
+
+/* При наведении на карточку - меняем цвет тени */
+.card:hover {
+  box-shadow: 4px 8px 16px rgba(255, 102, 51, 0.2);
+}
+
+.card__top {
+  flex: 0 0 220px; /* Задаем высоту 220px, запрещаем расширение и сужение по высоте */
+  position: relative;
+  overflow: hidden; /* Скрываем, что выходит за пределы */
+}
+
+/* Контейнер для картинки */
+.card__image {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card__image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Встраиваем картинку в контейнер card__image */
+  transition: 0.2s;
+}
+
+/* При наведении - увеличиваем картинку */
+.card__image:hover > img {
+  transform: scale(1.1);
+}
+
+/* Размещаем скидку на товар относительно изображения */
+.card__label {
+  padding: 4px 8px;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: #ff6633;
+  border-radius: 4px;
+  font-weight: 400;
+  font-size: 16px;
+  color: #fff;
+}
+
+.card__bottom {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto; /* Занимаем всю оставшуюся высоту карточки */
+  padding: 10px;
+}
+
+.card__prices {
+  display: flex;
+  margin-bottom: 10px;
+  flex: 0 0 50%; /* Размещаем цены равномерно в две колонки */
+}
+
+.card__price::after {
+  content: "₽";
+  margin-left: 4px;
+  position: relative;
+}
+
+.card__price--discount {
+  font-weight: 700;
+  font-size: 19px;
+  color: #414141;
+  display: flex;
+  flex-wrap: wrap-reverse;
+}
+
+.card__price--discount::before {
+  content: "Со скидкой";
+  font-weight: 400;
+  font-size: 13px;
+  color: #bfbfbf;
+}
+
+.card__price--common {
+  font-weight: 400;
+  font-size: 17px;
+  color: #606060;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: flex-end;
+}
+
+.card__price--common::before {
+  content: "Обычная";
+  font-weight: 400;
+  font-size: 13px;
+  color: #bfbfbf;
+}
+
+.card__title {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 150%;
+  color: #414141;
+}
+
+.card__title:hover {
+  color: #ff6633;
+}
+
+.card__add {
+  display: block;
+  width: 100%;
+  font-weight: 400;
+  font-size: 17px;
+  color: #2c2c2c;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #2c2c2c;
+  border-radius: 4px;
+  cursor: pointer; /* Меняем курсор при наведении */
+  transition: 0.2s;
+  margin-top: auto; /* Прижимаем кнопку к низу карточки */
+}
+
+.card__add:hover {
+  border: 1px solid #ff6633;
+  background-color: #ff6633;
+  color: #fff;
+}
