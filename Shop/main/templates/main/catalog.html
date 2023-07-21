@@ -23,7 +23,9 @@
                     alt="{{ item.name }}"
                   />
                 </a>
-                <div class="card__label">-{{ item.discount }}%</div>
+                  {% if item.discount != 0 %}
+                    <div class="card__label">-{{ item.discount }}%</div>
+                  {% endif %}
               </div>
               <div class="card__bottom">
                 <div class="card__prices">

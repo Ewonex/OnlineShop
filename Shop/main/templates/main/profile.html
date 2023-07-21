@@ -1,0 +1,16 @@
+ {% extends 'main/loyaout.html' %}
+
+{% block titleBlock %} Профиль {% endblock %}
+    {% block jsBlock %}
+      <script>
+
+      </script>
+    {% endblock %}
+{% block bodyBlock %}
+
+ <h1>Ваш профиль</h1>
+
+ <h5>Почта: {{ request.user.email }} </h5>
+
+
+{% endblock %}

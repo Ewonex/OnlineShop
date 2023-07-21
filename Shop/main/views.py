@@ -53,13 +53,20 @@ def logout_user(request):
     return redirect('main_page')
 
 def catalogShow(request):
+    gen = request.GET.get('gender', None)
     if request.method == 'POST' and request.user.is_anonymous:
         return redirect('/authorization')
     else:
-        items = Item.objects.order_by('id')
+        if gen:
+            items = Item.objects.filter(forMales=gen)
+        else:
+            items = Item.objects.order_by('id')
         for item in items:
             item.discount_price = item.price * ((100-item.discount)/100)
         data = {
             'items': items
         }
         return render(request, 'main/catalog.html', data)
+
+def profileShow(request):
+    return render(request, 'main/profile.html')

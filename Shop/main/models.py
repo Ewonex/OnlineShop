@@ -32,8 +32,11 @@ class Item(models.Model):
     name = models.CharField('Название товара', max_length=20)
     price = models.IntegerField('Цена товара', validators=[MinValueValidator(0), MaxValueValidator(999999999)])
     discount = models.IntegerField('Скидка на товар', default=0, validators=[MinValueValidator(0), MaxValueValidator(100)])
-    description = models.CharField('Описание товара', max_length=150)
+    description = models.CharField('Описание товара', max_length=250)
     pic = models.ImageField('Картинка товара')
+    tags = models.CharField('Тэги', max_length=500, default='')
+    forMales = models.BooleanField('Для мужчин', default=True)
+    forChildren = models.BooleanField('Для детей', default=False)
 
 
     def __str__(self):
