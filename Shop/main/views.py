@@ -70,3 +70,6 @@ def catalogShow(request):
 
 def profileShow(request):
     return render(request, 'main/profile.html')
+
+def aboutUsShow(request):
+    return render(request, 'main/aboutUs.html')

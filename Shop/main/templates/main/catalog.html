@@ -35,7 +35,11 @@
                   <div class="card__price card__price--common">{{ item.price }}</div>
                 </div>
                 <a href="#" class="card__title">
-                  {{ item.description }}
+                    {% if item.description|length > 60 %}
+                        {{ item.description|slice:":60" }}...
+                    {% else %}
+                        {{ item.description }}
+                    {% endif %}
                 </a>
                 <button class="card__add" type="submit">В корзину</button>
               </div>
