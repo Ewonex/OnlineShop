@@ -108,6 +108,7 @@ footer .info_card {
 
 .main-part {
     padding: 100px;
+    min-height: 80vh;
 }
 
 
@@ -204,7 +205,7 @@ footer .info_card {
 }
 
 .registrationDiv {
-
+    text-align: center;
 }
 
 .registrationDiv input[type=text], input[type=email], input[type=password], input[type=number], select, input[type=file], button{
