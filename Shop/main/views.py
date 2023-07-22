@@ -53,7 +53,7 @@ def logout_user(request):
     return redirect('main_page')
 
 def catalogShow(request):
-    gen = request.GET.get('gender', None)
+    gen = request.GET.get('isMale', None)
     if request.method == 'POST' and request.user.is_anonymous:
         return redirect('/authorization')
     else:
@@ -73,3 +73,6 @@ def profileShow(request):
 
 def aboutUsShow(request):
     return render(request, 'main/aboutUs.html')
+
+def clientCardShow(request):
+    return render(request, 'main/clientCard.html')

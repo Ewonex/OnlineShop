@@ -442,3 +442,83 @@ footer .info_card {
     color: #eb5959;
     transition: all .4s ease;
 }
+
+.defTextWithRedStroke {
+    font-size: 20px;
+    text-indent: 20px;
+}
+
+.clientCardPicture {
+    border-radius: 20px;
+    object-fit: cover;
+    width: 300px;
+    height: 150px;
+}
+
+.clientCardPicture:hover {
+    transform: scale(1.05);
+    transition: all .4s ease;
+}
+
+.loyalty-card {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.h1ForTitles {
+    text-align: center;
+    color: black;
+    margin-bottom: 25px;
+}
+
+.loyalty-levels {
+    list-style-type: none;
+    padding: 0;
+}
+
+.loyalty-levels li {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+
+
+.bronze-level {
+    border-left: 5px solid #FFC107;
+}
+.bronze-level strong {
+    color: #FFC107;
+}
+
+.silver-level {
+    border-left: 5px solid #9E9E9E;
+}
+.silver-level strong {
+    color: #9E9E9E;
+}
+
+.gold-level {
+    border-left: 5px solid #FFD700;
+}
+.gold-level strong {
+    color: #FFD700;
+}
+
+.platinum-level {
+    border-left: 5px solid #00CED1;
+}
+.platinum-level strong {
+    color: #00CED1;
+}
+
+.diamond-level {
+    border-left: 5px solid #FF1493;
+}
+.diamond-level strong {
+    color: #FF1493;
+}

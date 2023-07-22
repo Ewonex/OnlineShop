@@ -14,7 +14,7 @@
 </head>
 <body>
     <header>
-        <div><a href="{% url 'main_page' %}">Logo</a></div><div><a href="{% url 'catalog' %}?gender=True">Мужское</a></div><div><a href="{% url 'catalog' %}?gender=False">Женское</a></div>
+        <div><a href="{% url 'main_page' %}">Logo</a></div><div><a href="{% url 'catalog' %}?isMale=True">Мужское</a></div><div><a href="{% url 'catalog' %}?isMale=False">Женское</a></div>
         <div class="searchDiv"><input type="text" placeholder="Найти"><a href="" ><i class="fas fa-search"></i></a></div>
         {% if request.user.is_authenticated %}
             <div><a href="{% url 'profile' %}"><i class="fas fa-user-alt"></i></a></div><div><a href=""><i class="fas fa-heart"></i></a></div><div><a href=""><i class="fas fa-shopping-cart"></i></a></div><div><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i></a></div>
@@ -51,7 +51,7 @@
             <span class="text">Оплата при получении</span><br>
             <span class="text">Оплата картой</span><br>
             <span class="title">Карточки</span><br>
-            <a href=""><span class="text">Карта постоянного клиента</span></a><br>
+            <a href="{% url 'clientCard' %}"><span class="text">Карта постоянного клиента</span></a><br>
             <a href=""><span class="text">Подарочные карты</span></a><br>
         </div>
         <div class="column">
