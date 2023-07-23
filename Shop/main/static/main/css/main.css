@@ -60,7 +60,7 @@ header .searchDiv input {
     background: #f0f0f0;
     border-radius: 10px 10px 10px 10px;
     border: 0 solid White;
-    padding: 20px 1px 1px 1px;
+    padding: 1px 1px 1px 20px;
     text-align: left;
 }
 
