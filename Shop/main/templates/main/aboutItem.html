@@ -1,0 +1,62 @@
+ {% extends 'main/loyaout.html' %}
+
+{% block titleBlock %} Описание {% endblock %}
+    {% block jsBlock %}
+      <script>
+
+      </script>
+    {% endblock %}
+{% block bodyBlock %}
+ <div class="aboutItemDiv">
+     <h1>{{ item.name }}</h1>
+     <div class="blockForItemInfo">
+         <img class="" src="{{ item.pic.url }}"  alt="{{ item.name }}" />
+     </div>
+    <div class="blockForItemInfo" style="text-align: left">
+        <p class="defTextWithRedStroke">
+            Для
+            {% if item.forMales == True %}
+            мужчин
+            {% else %}
+            женщин
+            {% endif %}
+        </p>
+        {% if item.forChildren == True %}
+            <p class="defTextWithRedStroke">
+                Детское
+            </p>
+        {% endif %}
+        <p class="defTextWithRedStroke">
+            {{ item.description }}
+        </p>
+
+
+
+    </div>
+     <div class="divForPrice">
+     {% if item.discount != 0 %}
+        Скидка
+         <span class="divForDiscount">
+            {{ item.discount }}%
+        </span>
+         <br>
+        <span class="divForDiscount">
+            {{ discounted_price }}BYN
+        </span>
+         <span class="forDefaultPriceCrossed">
+            {{ item.price }}BYN
+        </span>
+     {% else %}
+        {{ item.price }}BYN
+     {% endif %}
+     </div>
+     {% if request.user.is_authenticated %}
+         <button>Добавить в корзину</button>
+         <button class="heartButton"><i class="fas fa-heart"></i></button>
+     {% endif %}
+
+ </div>
+
+
+
+{% endblock %}

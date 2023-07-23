@@ -82,3 +82,15 @@ def clientCardShow(request):
 
 def giftCardsShow(request):
     return render(request, 'main/giftCards.html')
+
+class aboutItemShow(DetailView):
+    model = Item
+    template_name = 'main/aboutItem.html'
+    context_object_name = 'item'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        item = context['item']
+        if item.discount!=0:
+            discounted_price = item.price * (1 - item.discount / 100)
+            context['discounted_price'] = discounted_price
+        return context

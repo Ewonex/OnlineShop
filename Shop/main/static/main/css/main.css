@@ -5,6 +5,12 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
+button:hover {
+    transition: all .4s ease;
+    color: #eb5959;
+    background-color: white;
+}
+
 a {
     color: #2c2c2c;
     text-decoration: none;
@@ -522,3 +528,65 @@ footer .info_card {
 .diamond-level strong {
     color: #FF1493;
 }
+
+.aboutItemDiv {
+    text-align: center;
+}
+
+.aboutItemDiv H1{
+    margin-bottom: 20px;
+}
+
+.blockForItemInfo {
+    vertical-align: top;
+    display: inline-block;
+    max-width: 45%;
+    margin-right: 20px;
+}
+
+
+.blockForItemInfo img {
+    max-width: 300px;
+    height: 400px;
+    object-fit: cover;
+    box-shadow: 0px 0px 3px 1px #2c2c2c;
+    border-radius: 20px;
+}
+
+.blockForItemInfo img:hover {
+    transform: scale(1.05);
+    transition: all .4s ease;
+}
+
+.divForPrice {
+    margin-top: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.forDefaultPrice {
+    display: inline-block;
+    color: #2c2c2c;
+}
+
+.forDefaultPriceCrossed {
+    display: inline-block;
+    text-decoration: line-through;
+    color: #2c2c2c;
+    text-decoration-thickness: 3px;
+}
+
+.divForDiscount {
+    display: inline-block;
+    color: white;
+    background-color: #ff6633;
+    padding: 0px 4px 0px 4px;
+    border-radius: 5px;
+}
+
+.heartButton {
+    width: 40px;
+    color: #2c2c2c;
+}
+

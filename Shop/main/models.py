@@ -29,7 +29,7 @@ class User(AbstractUser):
         verbose_name_plural = 'Пользователи'
 
 class Item(models.Model):
-    name = models.CharField('Название товара', max_length=20)
+    name = models.CharField('Название товара', max_length=30)
     price = models.IntegerField('Цена товара', validators=[MinValueValidator(0), MaxValueValidator(999999999)])
     discount = models.IntegerField('Скидка на товар', default=0, validators=[MinValueValidator(0), MaxValueValidator(100)])
     description = models.CharField('Описание товара', max_length=250)

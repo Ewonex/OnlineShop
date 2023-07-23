@@ -8,9 +8,10 @@
     {% endblock %}
 {% block bodyBlock %}
 
- <h1>Ваш профиль</h1>
+    <h1>Ваш профиль</h1>
 
- <h5>Почта: {{ request.user.email }} </h5>
+    <h5>Почта: {{ request.user.email }} </h5>
+    <h5>Логин: {{ request.user.username }} </h5>
 
 
 {% endblock %}

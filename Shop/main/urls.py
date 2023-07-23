@@ -12,5 +12,6 @@ urlpatterns = [
     path('profile', views.profileShow, name='profile'),
     path('aboutUs', views.aboutUsShow, name='aboutUs'),
     path('clientCard', views.clientCardShow, name='clientCard'),
-    path('giftCards', views.giftCardsShow, name='giftCards')
+    path('giftCards', views.giftCardsShow, name='giftCards'),
+    path('aboutItem<int:pk>', views.aboutItemShow.as_view(), name='aboutItem'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
