@@ -11,5 +11,6 @@ urlpatterns = [
     path('catalog', views.catalogShow, name='catalog'),
     path('profile', views.profileShow, name='profile'),
     path('aboutUs', views.aboutUsShow, name='aboutUs'),
-    path('clientCard', views.clientCardShow, name='clientCard')
+    path('clientCard', views.clientCardShow, name='clientCard'),
+    path('giftCards', views.giftCardsShow, name='giftCards')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

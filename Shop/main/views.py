@@ -3,7 +3,7 @@ from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
 
-from .models import User, Item
+from .models import Item
 from .forms import RegistrationForm
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, DetailView
@@ -69,10 +69,16 @@ def catalogShow(request):
         return render(request, 'main/catalog.html', data)
 
 def profileShow(request):
-    return render(request, 'main/profile.html')
+    if request.user.is_anonymous:
+        return redirect('main_page')
+    else:
+        return render(request, 'main/profile.html')
 
 def aboutUsShow(request):
     return render(request, 'main/aboutUs.html')
 
 def clientCardShow(request):
     return render(request, 'main/clientCard.html')
+
+def giftCardsShow(request):
+    return render(request, 'main/giftCards.html')
