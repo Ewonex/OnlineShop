@@ -13,7 +13,7 @@
          <img class="" src="{{ item.pic.url }}"  alt="{{ item.name }}" />
      </div>
     <div class="blockForItemInfo" style="text-align: left">
-        <p class="defTextWithRedStroke">
+        <p class="defTextWithRedStroke" style="font-weight: bold">
             Для
             {% if item.forMales == True %}
             мужчин
@@ -22,7 +22,7 @@
             {% endif %}
         </p>
         {% if item.forChildren == True %}
-            <p class="defTextWithRedStroke">
+            <p class="defTextWithRedStroke" style="font-weight: bold">
                 Детское
             </p>
         {% endif %}

@@ -24,7 +24,7 @@ header {
     width: 100vw;
     padding-left: 10px;
     padding-right: 10px;
-    margin-top: 0px;
+    margin-top: 0;
 }
 header div {
     height: 50px;
@@ -59,9 +59,8 @@ header .searchDiv input {
     font-size: 16px;
     background: #f0f0f0;
     border-radius: 10px 10px 10px 10px;
-    border: 0px solid White;
-    padding: 1px;
-    padding-left: 20px;
+    border: 0 solid White;
+    padding: 20px 1px 1px 1px;
     text-align: left;
 }
 
@@ -167,7 +166,7 @@ footer .info_card {
     transition: background-color 0.6s ease;
 }
 
-.active, dot:hover {
+.active, .dot:hover {
     background-color: #717171;
 }
 
@@ -200,6 +199,7 @@ footer .info_card {
     width: 200px;
     text-align: center;
     margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 .infoCards .card-info:hover {
@@ -241,8 +241,53 @@ footer .info_card {
 }
 
 .productShow {
-    /* background-color: #717171; */
+    display: inline-block;
+    max-width: 80%;
 }
+
+.searchFilter {
+    vertical-align: top;
+    max-width: 200px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: inline-block;
+    margin-right: 20px;
+    height: 100%;
+}
+
+.searchFilter h2 {
+    text-align: center;
+    color: #2c2c2c;
+}
+
+.searchFilter form {
+    display: flex;
+    flex-direction: column;
+}
+.searchFilter input[type="checkbox"], input[type="radio"] {
+    margin-right: 5px;
+}
+
+.searchFilter label {
+    color: #333;
+}
+
+.searchFilter input[type="number"] {
+    width: 80px;
+}
+
+
+
+.filter-item {
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+
+
 
 .card {
     width: 225px;
@@ -383,7 +428,7 @@ footer .info_card {
   color: #fff;
 }
 
-.aboutUsfield {
+.aboutUsField {
     vertical-align: top;
     display: inline-block;
     width: 48%;
@@ -393,12 +438,12 @@ footer .info_card {
 
 }
 
-.aboutUsfield .text {
+.aboutUsField .text {
     text-indent: 20px;
     font-size: 20px;
 }
 
-.aboutUsfield h1, h2 {
+.aboutUsField h1, h2 {
     text-align: center;
 }
 
@@ -420,7 +465,7 @@ footer .info_card {
     margin-right: 20px;
     margin-bottom: 20px;
     text-align: center;
-    box-shadow: 0px 0px 3px 1px #2c2c2c;
+    box-shadow: 0 0 3px 1px #2c2c2c;
 }
 
 .personCard img {
@@ -549,13 +594,14 @@ footer .info_card {
     max-width: 300px;
     height: 400px;
     object-fit: cover;
-    box-shadow: 0px 0px 3px 1px #2c2c2c;
+    box-shadow: 0 0 3px 1px #2c2c2c;
     border-radius: 20px;
 }
 
 .blockForItemInfo img:hover {
     transform: scale(1.05);
     transition: all .4s ease;
+    cursor: zoom-in;
 }
 
 .divForPrice {
@@ -581,7 +627,7 @@ footer .info_card {
     display: inline-block;
     color: white;
     background-color: #ff6633;
-    padding: 0px 4px 0px 4px;
+    padding: 0 4px 0 4px;
     border-radius: 5px;
 }
 
