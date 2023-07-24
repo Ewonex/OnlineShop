@@ -14,8 +14,16 @@
 </head>
 <body>
     <header>
-        <div><a href="{% url 'main_page' %}">Logo</a></div><div><a href="{% url 'catalog' %}?isMale=True">Мужское</a></div><div><a href="{% url 'catalog' %}?isMale=False">Женское</a></div>
-        <div class="searchDiv"><input type="text" placeholder="Найти"><a href="" ><i class="fas fa-search"></i></a></div>
+        <div><a href="{% url 'main_page' %}">Logo</a></div><div><a href="{% url 'catalog' %}?forMales=True">Мужское</a></div><div><a href="{% url 'catalog' %}?forFemales=True">Женское</a></div>
+        <div class="searchDiv">
+            <form method="get" id="searchForm">
+                {% csrf_token %}
+                    <input type="text" placeholder="Найти" name="searchBar" value="{{ search_query }}">
+                    <a href="#" onclick="document.getElementById('searchForm').submit();">
+                        <i class="fas fa-search"></i>
+                    </a>
+            </form>
+        </div>
         {% if request.user.is_authenticated %}
             <div><a href="{% url 'profile' %}"><i class="fas fa-user-alt"></i></a></div><div><a href=""><i class="fas fa-heart"></i></a></div><div><a href=""><i class="fas fa-shopping-cart"></i></a></div><div><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i></a></div>
 

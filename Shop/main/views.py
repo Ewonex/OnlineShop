@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.views import LoginView
+from django.db.models import Q
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
 
@@ -53,20 +54,53 @@ def logout_user(request):
     return redirect('main_page')
 
 def catalogShow(request):
-    gen = request.GET.get('isMale', None)
-    if request.method == 'POST' and request.user.is_anonymous:
-        return redirect('/authorization')
-    else:
-        if gen:
-            items = Item.objects.filter(forMales=gen)
+    search_query = ''
+    items = Item.objects.order_by('id')
+    if request.method == 'GET' and (request.GET.get('forMales', None) or request.GET.get('forFemales', None) or request.GET.get('onSale', None) or request.GET.get('searchBar')):
+        if request.GET.get('searchBar'):
+            search_query = request.GET.get('searchBar', '')
+            items = items.filter(description__icontains=search_query)
         else:
-            items = Item.objects.order_by('id')
-        for item in items:
-            item.discount_price = item.price * ((100-item.discount)/100)
-        data = {
-            'items': items
-        }
-        return render(request, 'main/catalog.html', data)
+            if request.GET.get('onSale', None):
+                items = items.filter(discount__gt=0)
+            else:
+                if request.GET.get('forMales', None):
+                    items = items.filter(forMales=True)
+                else:
+                    items = items.filter(forFemales=True)
+    else:
+        if request.method == 'GET':
+            fChildren = request.GET.get('forChildren')
+            fMales = request.GET.get('forMales')
+            fFemales = request.GET.get('forFemales')
+            price_from = request.GET.get('priceFrom')
+            price_to = request.GET.get('priceTo')
+            onDiscount = request.GET.get('discount')
+            # category = request.GET.get('category')
+            if fChildren:
+                items = items.filter(forChildren=True)
+            if fMales:
+                items = items.filter(forMales=True)
+            if fFemales:
+                items = items.filter(forFemales=True)
+            if onDiscount:
+                items = items.filter(discount__gt=0)
+            if price_from and price_to:
+                items = items.filter(price__gte=price_from, price__lte=price_to)
+        else:
+            if request.method == 'POST' and request.user.is_anonymous:
+                return redirect('/authorization')
+            else:
+                print('добавлено в бакет')
+                # добавление элемента в бакет
+    for item in items:
+        item.discount_price = item.price * ((100 - item.discount) / 100)
+    data = {
+        'items': items,
+        'search_query': search_query
+    }
+    return render(request, 'main/catalog.html', data)
+
 
 def profileShow(request):
     if request.user.is_anonymous:

@@ -11,19 +11,23 @@
 
 <div class="searchFilter">
     <h2>Фильтр</h2>
-    <form method="post">
+    <form method="get">
         {% csrf_token %}
         <div class="filter-item">
-            <input type="checkbox" id="childrenCheckbox">
+            <input type="checkbox" id="childrenCheckbox" name="forChildren">
             <label for="childrenCheckbox">Для детей</label>
         </div>
         <div class="filter-item">
-            <input type="radio" id="maleRadio" name="gender" value="male">
-            <label for="maleRadio">Мужчины</label>
+            <input type="checkbox" id="maleRadio" name="forMales">
+            <label for="maleRadio">Для мужчин</label>
         </div>
         <div class="filter-item">
-            <input type="radio" id="femaleRadio" name="gender" value="female">
-            <label for="femaleRadio">Женщины</label>
+            <input type="checkbox" id="femaleRadio" name="forFemales">
+            <label for="femaleRadio">Для женщин</label>
+        </div>
+        <div class="filter-item">
+            <input type="checkbox" id="discountCheckbox" name="discount">
+            <label for="discountCheckbox">Со скидкой</label>
         </div>
         <div class="filter-item">
             <label for="priceFromInput">Цена от:</label>
@@ -33,10 +37,7 @@
             <label for="priceToInput">Цена до:</label>
             <input type="number" id="priceToInput" name="priceTo" value="9999" required min="0" max="10000">
         </div>
-        <div class="filter-item">
-            <input type="checkbox" id="discountCheckbox">
-            <label for="discountCheckbox">Со скидкой</label>
-        </div>
+
         <button style="width: 160px" type="submit">Применить</button>
     </form>
 </div>
