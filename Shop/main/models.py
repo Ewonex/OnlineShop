@@ -24,10 +24,19 @@ class Item(models.Model):
     forFemales = models.BooleanField('Для женщин', default=True)
     forChildren = models.BooleanField('Для детей', default=False)
 
-
     def __str__(self):
         return self.name
 
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
+
+class Brand(models.Model):
+    name = models.CharField('Имя бренда', max_length=30)
+    siteLink = models.CharField('Ссылка на сайт', max_length=250)
+    pic = models.ImageField('Картинка бренда')
+    def __str__(self):
+        return self.name
+    class Meta:
+        verbose_name = 'Бренд'
+        verbose_name_plural = 'Бренды'
