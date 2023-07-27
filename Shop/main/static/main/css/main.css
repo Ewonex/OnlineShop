@@ -290,7 +290,6 @@ footer .info_card {
 
 .card {
     width: 225px;
-    max-height: 700px;
     min-height: 350px;
     box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;

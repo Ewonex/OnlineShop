@@ -134,7 +134,6 @@ def addToFavorites(request):
         user = request.user
         itemId = request.POST.get('item_id')
         item = Item.objects.get(id=itemId)
-
         try:
             favorite_item = FavoriteItem.objects.get(user=user, item=item)
             favorite_item.delete()
@@ -142,8 +141,6 @@ def addToFavorites(request):
             favorite_item = FavoriteItem(user=user, item=item)
             favorite_item.save()
         return redirect(f'/aboutItem{itemId}')
-
-
     else:
         return redirect('/authorization')
 

@@ -67,8 +67,8 @@
                   <div class="card__price card__price--common">{{ item.price }}</div>
                 </div>
                 <a href="{% url 'aboutItem' item.id %}" class="card__title">
-                    {% if item.description|length > 60 %}
-                        {{ item.description|slice:":60" }}...
+                    {% if item.description|length > 50 %}
+                        {{ item.description|slice:":50" }}...
                     {% else %}
                         {{ item.description }}
                     {% endif %}
