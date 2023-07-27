@@ -23,6 +23,9 @@ class Item(models.Model):
     forMales = models.BooleanField('Для мужчин', default=True)
     forFemales = models.BooleanField('Для женщин', default=True)
     forChildren = models.BooleanField('Для детей', default=False)
+    category = models.CharField('Категория товара',  max_length=20, default='Одежда')
+    mark = models.FloatField('Оценка товара', validators=[MinValueValidator(0), MaxValueValidator(5)], default=5)
+
 
     def __str__(self):
         return self.name
