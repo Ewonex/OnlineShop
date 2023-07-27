@@ -1,0 +1,55 @@
+ {% extends 'main/loyaout.html' %}
+
+{% block titleBlock %} Каталог {% endblock %}
+    {% block jsBlock %}
+      <script>
+
+      </script>
+    {% endblock %}
+{% block bodyBlock %}
+
+<h1 class="h1ForTitles">Избранные товары:</h1>
+<div class="productShow">
+
+{% for item in items %}
+
+    <form method="post" style="display: inline-block; margin-right: 16px; margin-bottom: 20px;">
+        {% csrf_token %}
+        <div>
+            <div class="card">
+              <div class="card__top">
+                <a href="{% url 'aboutItem' item.id %}" class="card__image">
+                  <img
+                    src="{{ item.pic.url }}"
+                    alt="{{ item.name }}"
+                  />
+                </a>
+                  {% if item.discount != 0 %}
+                    <div class="card__label">-{{ item.discount }}%</div>
+                  {% endif %}
+              </div>
+              <div class="card__bottom">
+                <div class="card__prices">
+                    <div class="card__price card__price--discount">
+                      {{ item.discount_price }}
+                    </div>
+                  <div class="card__price card__price--common">{{ item.price }}</div>
+                </div>
+                <a href="{% url 'aboutItem' item.id %}" class="card__title">
+                    {% if item.description|length > 60 %}
+                        {{ item.description|slice:":60" }}...
+                    {% else %}
+                        {{ item.description }}
+                    {% endif %}
+                </a>
+              </div>
+            </div>
+        </div>
+    </form>
+{% endfor %}
+
+</div>
+
+
+
+{% endblock %}

@@ -14,4 +14,6 @@ urlpatterns = [
     path('clientCard', views.clientCardShow, name='clientCard'),
     path('giftCards', views.giftCardsShow, name='giftCards'),
     path('aboutItem<int:pk>', views.aboutItemShow.as_view(), name='aboutItem'),
+    path('addToFavorites', views.addToFavorites, name='addToFavorites'),
+    path('favorites', views.favoritesShow, name='favorites'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -4,7 +4,7 @@ from django.db.models import Q
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
 
-from .models import Item
+from .models import Item, FavoriteItem
 from .forms import RegistrationForm
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, DetailView
@@ -128,3 +128,36 @@ class aboutItemShow(DetailView):
             discounted_price = item.price * (1 - item.discount / 100)
             context['discounted_price'] = discounted_price
         return context
+
+def addToFavorites(request):
+    if request.method == 'POST' and request.user.is_authenticated:
+        user = request.user
+        itemId = request.POST.get('item_id')
+        item = Item.objects.get(id=itemId)
+
+        try:
+            favorite_item = FavoriteItem.objects.get(user=user, item=item)
+            favorite_item.delete()
+        except FavoriteItem.DoesNotExist:
+            favorite_item = FavoriteItem(user=user, item=item)
+            favorite_item.save()
+        return redirect(f'/aboutItem{itemId}')
+
+
+    else:
+        return redirect('/authorization')
+
+def favoritesShow(request):
+    if request.user.is_anonymous:
+        return redirect('/authorization')
+    else:
+        user = request.user
+        favorite_items = FavoriteItem.objects.filter(user=user)
+        item_ids = favorite_items.values_list('item_id', flat=True)
+        items = Item.objects.filter(id__in=item_ids)
+        for item in items:
+            item.discount_price = item.price * ((100 - item.discount) / 100)
+        data = {
+            'items': items
+        }
+        return render(request, 'main/favorites.html', data)

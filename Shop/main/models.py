@@ -40,3 +40,12 @@ class Brand(models.Model):
     class Meta:
         verbose_name = 'Бренд'
         verbose_name_plural = 'Бренды'
+
+class FavoriteItem(models.Model):
+    user = models.ForeignKey('User', on_delete=models.PROTECT)
+    item = models.ForeignKey('Item', on_delete=models.PROTECT)
+    def __str__(self):
+        return f'{self.user} - {self.item}'
+    class Meta:
+        verbose_name = 'Избранный товар'
+        verbose_name_plural = 'Избранные товары'

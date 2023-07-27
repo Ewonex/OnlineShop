@@ -25,7 +25,7 @@
             </form>
         </div>
         {% if request.user.is_authenticated %}
-            <div><a href="{% url 'profile' %}"><i class="fas fa-user-alt"></i></a></div><div><a href=""><i class="fas fa-heart"></i></a></div><div><a href=""><i class="fas fa-shopping-cart"></i></a></div><div><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i></a></div>
+            <div><a href="{% url 'profile' %}"><i class="fas fa-user-alt"></i></a></div><div><a href="{% url 'favorites' %}"><i class="fas fa-heart"></i></a></div><div><a href=""><i class="fas fa-shopping-cart"></i></a></div><div><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i></a></div>
 
         {% else %}
             <div><a href="{% url 'authorization_page' %}">Войти</a></div>

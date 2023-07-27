@@ -52,7 +52,12 @@
      </div>
      {% if request.user.is_authenticated %}
          <button>Добавить в корзину</button>
-         <button class="heartButton"><i class="fas fa-heart"></i></button>
+         <form method="post" action="{% url 'addToFavorites' %}" style="display: inline-block">
+             {% csrf_token %}
+             <input type="hidden" name="item_id" id="item_id" value="{{ item.id }}">
+             <button class="heartButton"><i class="fas fa-heart"></i></button>
+         </form>
+
      {% endif %}
 
  </div>
