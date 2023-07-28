@@ -1,0 +1,26 @@
+ {% extends 'main/loyaout.html' %}
+
+{% block titleBlock %} Бренды {% endblock %}
+    {% block jsBlock %}
+      <script>
+
+      </script>
+    {% endblock %}
+{% block bodyBlock %}
+
+<h1 class="h1ForTitles">Наши поставщики:</h1>
+<div>
+    <div style="text-align: center">
+        {% for brand in brands %}
+            <a href="{{ brand.siteLink }}">
+                <div class="brand-card">
+                    <img src="{{ brand.pic.url }}">
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock %}

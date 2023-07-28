@@ -7,5 +7,7 @@ admin.site.register(User)
 admin.site.register(Brand)
 admin.site.register(FavoriteItem)
 admin.site.register(Review)
+admin.site.register(Article)
+admin.site.register(Vacansy)
 
 

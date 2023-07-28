@@ -18,10 +18,10 @@
         <div class="searchDiv">
             <form method="get" id="searchForm">
                 {% csrf_token %}
-                    <input type="text" placeholder="Найти" name="searchBar" value="{{ search_query }}">
-                    <a href="#" onclick="document.getElementById('searchForm').submit();">
-                        <i class="fas fa-search"></i>
-                    </a>
+                <input type="text" placeholder="Найти" name="searchBar" value="{{ search_query }}">
+                <a href="#" onclick="document.getElementById('searchForm').submit();">
+                    <i class="fas fa-search"></i>
+                </a>
             </form>
         </div>
         {% if request.user.is_authenticated %}
@@ -44,8 +44,8 @@
             <a><span class="title">О магазине</span></a><br>
             <a href="{% url 'aboutUs' %}"><span class="text">О нас</span></a><br>
             <a href="{% url 'reviews' %}"><span class="text">Отзывы</span></a><br>
-            <a href=""><span class="text">Бренды</span></a><br>
-            <a href=""><span class="title">Вакансии</span></a><br>
+            <a href="{% url 'brands' %}"><span class="text">Бренды</span></a><br>
+            <a href="{% url 'vacansys' %}"><span class="title">Вакансии</span></a><br>
         </div>
         <div class="column">
             <span class="title">Интересное</span><br>

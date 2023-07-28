@@ -4,7 +4,7 @@ from django.db.models import Q
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
 
-from .models import Item, FavoriteItem, Review
+from .models import Item, FavoriteItem, Review, Brand, Vacansy
 from .forms import RegistrationForm
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, DetailView
@@ -177,3 +177,17 @@ def reviewsShow(request):
         'stars': range(1, 6)
     }
     return render(request, 'main/reviews.html', data)
+
+def brandsShow(request):
+    brands = Brand.objects.order_by('id')
+    data = {
+        'brands': brands,
+    }
+    return render(request, 'main/brands.html', data)
+
+def vacansysShow(request):
+    vacansys = Vacansy.objects.order_by('id')
+    data = {
+        'vacansys': vacansys,
+    }
+    return render(request, 'main/vacansys.html', data)

@@ -1,0 +1,31 @@
+ {% extends 'main/loyaout.html' %}
+
+{% block titleBlock %} Вакансии {% endblock %}
+    {% block jsBlock %}
+      <script>
+
+      </script>
+    {% endblock %}
+{% block bodyBlock %}
+
+<h1 class="h1ForTitles">Активные вакансии:</h1>
+<div>
+{% if vacansys|length == 0 %}
+    <h2>В данный момент нет активных вакансий</h2>
+    {% endif %}
+{% for vacansy in vacansys %}
+    <div class="reviewBlock">
+        <h2>{{ vacansy.title }}</h2>
+        <p><span>{{ vacansy.post }}</span></p>
+        <p>{{ vacansy.description }}</p>
+        <p>{{ vacansy.skills }}</p>
+        <p><span>Примерная З.П: </span>{{ vacansy.salary }} ₽</p>
+        <p><span>Дата публикации: </span>{{ vacansy.dateOfPublishment }}</p>
+    </div>
+{% endfor %}
+
+</div>
+
+
+
+{% endblock %}

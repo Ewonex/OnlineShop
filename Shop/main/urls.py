@@ -18,4 +18,6 @@ urlpatterns = [
     path('favorites', views.favoritesShow, name='favorites'),
     path('best', views.bestShow, name='best'),
     path('reviews', views.reviewsShow, name='reviews'),
+    path('brands', views.brandsShow, name='brands'),
+    path('vacansys', views.vacansysShow, name='vacansys'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
