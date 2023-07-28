@@ -20,4 +20,5 @@ urlpatterns = [
     path('reviews', views.reviewsShow, name='reviews'),
     path('brands', views.brandsShow, name='brands'),
     path('vacansys', views.vacansysShow, name='vacansys'),
+    path('garants', views.garantsShow, name='garants'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -191,3 +191,5 @@ def vacansysShow(request):
         'vacansys': vacansys,
     }
     return render(request, 'main/vacansys.html', data)
+def garantsShow(request):
+    return render(request, 'main/garants.html')

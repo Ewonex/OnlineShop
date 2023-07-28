@@ -522,6 +522,7 @@ footer .info_card {
     text-align: center;
     color: #2c2c2c;
     margin-bottom: 25px;
+    font-weight: bold;
 }
 
 .loyalty-levels {
@@ -688,8 +689,15 @@ footer .info_card {
     transition: all .4s ease;
 }
 
+.garantsBlock {
 
+}
 
+.garantsBlock h3 {
+    margin-top: 10px;
+    color: #2c2c2c;
+    font-weight: bold;
+}
 
 
 
