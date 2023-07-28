@@ -4,7 +4,7 @@ from django.db.models import Q
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
 
-from .models import Item, FavoriteItem
+from .models import Item, FavoriteItem, Review
 from .forms import RegistrationForm
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, DetailView
@@ -124,7 +124,8 @@ class aboutItemShow(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         item = context['item']
-        if item.discount!=0:
+        context['stars'] = range(1, 6)
+        if item.discount != 0:
             discounted_price = item.price * (1 - item.discount / 100)
             context['discounted_price'] = discounted_price
         return context
@@ -158,3 +159,21 @@ def favoritesShow(request):
             'items': items
         }
         return render(request, 'main/favorites.html', data)
+
+def bestShow(request):
+    items = Item.objects.order_by('-mark')
+    for item in items:
+        item.discount_price = item.price * ((100 - item.discount) / 100)
+    data = {
+        'items': items
+    }
+
+    return render(request, 'main/catalog.html', data)
+
+def reviewsShow(request):
+    reviews = Review.objects.order_by('-mark')
+    data = {
+        'reviews': reviews,
+        'stars': range(1, 6)
+    }
+    return render(request, 'main/reviews.html', data)

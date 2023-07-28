@@ -1,0 +1,37 @@
+ {% extends 'main/loyaout.html' %}
+
+{% block titleBlock %} Каталог {% endblock %}
+    {% block jsBlock %}
+      <script>
+
+      </script>
+    {% endblock %}
+{% block bodyBlock %}
+
+<h1 class="h1ForTitles">Отзывы:</h1>
+<div>
+
+{% for review in reviews %}
+    <div class="reviewBlock">
+        <a href="{% url 'aboutItem' review.item.id %}"><img src="{{ review.item.pic.url }}" alt="{{ review.item.name }}" style="width:90px"></a>
+        <p><span>{{ review.user.username }}</span> {{ review.item.name }}</p>
+        <p><span>
+             Оценка: {{ review.mark }}
+            </span>
+            {% for i in stars %}
+                {% if i <= review.mark %}
+                    <span style="color: gold">&#9733;</span>
+                {% else %}
+                     <span style="color: gold">&#9734;</span>
+                {% endif %}
+            {% endfor %}
+        </p>
+        <p>{{ review.text }}</p>
+    </div>
+{% endfor %}
+
+</div>
+
+
+
+{% endblock %}

@@ -1,6 +1,7 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.contrib.auth.models import AbstractUser, Permission, Group
+from datetime import datetime
 
 
 class User(AbstractUser):
@@ -82,6 +83,7 @@ class Review(models.Model):
     item = models.ForeignKey('Item', on_delete=models.PROTECT)
     mark = models.IntegerField('Оценка', default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
     text = models.CharField('Текст отзыва', max_length=300)
+    datetime = models.DateTimeField('Дата отзыва', default=datetime.now)
     def __str__(self):
         return f'{self.user} - {self.item} - {self.mark}'
     class Meta:

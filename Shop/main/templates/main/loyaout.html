@@ -43,7 +43,7 @@
             <a href="{% url 'catalog' %}"><span class="title">Каталог</span></a><br>
             <a><span class="title">О магазине</span></a><br>
             <a href="{% url 'aboutUs' %}"><span class="text">О нас</span></a><br>
-            <a href=""><span class="text">Отзывы</span></a><br>
+            <a href="{% url 'reviews' %}"><span class="text">Отзывы</span></a><br>
             <a href=""><span class="text">Бренды</span></a><br>
             <a href=""><span class="title">Вакансии</span></a><br>
         </div>
@@ -80,7 +80,7 @@
             <a href=""><span class="text"><i class="fas fa-egg"></i> +375 33 764-77-45 </span></a><br>
             <a href=""><span class="text">:) +375 25 764-77-45 </span></a><br>
             <a href=""><span class="text"><i class="fab fa-telegram-plane"></i> +375 25 764-77-45 </span></a><br>
-            <a href=""><div class="info_card">
+            <a href="{% url 'reviews' %}"><div class="info_card">
                 <span class="text">Отзывов</span><br>
                 <span class="title">{{ reviews_count }}</span>
             </div></a>

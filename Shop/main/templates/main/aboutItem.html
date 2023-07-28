@@ -29,23 +29,36 @@
         <p class="defTextWithRedStroke">
             {{ item.description }}
         </p>
+        <p style="font-size: 20px; font-weight: bold">
+            Оценка:
+            {% for i in stars %}
+                {% if i <= item.mark %}
+                    <span style="color: gold">&#9733;</span> <!-- Звезда в формате HTML entity -->
+                {% else %}
+                     <span style="color: gold">&#9734;</span> <!-- Пустая звезда в формате HTML entity -->
+                {% endif %}
+            {% endfor %}
+            {{ item.mark }}
+        </p>
+
 
 
 
     </div>
      <div class="divForPrice">
      {% if item.discount != 0 %}
-        Скидка
-         <span class="divForDiscount">
-            {{ item.discount }}%
-        </span>
-         <br>
-        <span class="divForDiscount">
-            {{ discounted_price }}BYN
-        </span>
          <span class="forDefaultPriceCrossed">
-            {{ item.price }}BYN
+            {{ item.price }}₽
         </span>
+         <span class="divForDiscount">
+            -{{ item.discount }}%
+        </span>
+
+         <br>
+        <span class="divForDiscount" style="margin-top: 10px;">
+            {{ discounted_price }}₽
+        </span>
+
      {% else %}
         {{ item.price }}BYN
      {% endif %}
