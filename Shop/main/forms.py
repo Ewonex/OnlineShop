@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 
-from .models import User
+from .models import User, ReturningRequest, Item
 from django.forms import ModelForm, TextInput, PasswordInput, EmailInput
 from django import forms
 

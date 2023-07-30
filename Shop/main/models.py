@@ -14,7 +14,13 @@ class User(AbstractUser):
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
 
+    def save(self, *args, **kwargs):
+        if self.password and (not self.pk or self._password != self.password):
+            self.set_password(self.password)
+        super().save(*args, **kwargs)
+
 class Item(models.Model):
+    brand = models.ForeignKey('Brand', on_delete=models.SET_NULL, null=True, default=None)
     name = models.CharField('Название товара', max_length=30)
     price = models.IntegerField('Цена товара', validators=[MinValueValidator(0), MaxValueValidator(999999999)])
     discount = models.IntegerField('Скидка на товар', default=0, validators=[MinValueValidator(0), MaxValueValidator(100)])
@@ -89,3 +95,20 @@ class Review(models.Model):
     class Meta:
         verbose_name = 'Отзыв'
         verbose_name_plural = 'Отзывы'
+
+class ReturningRequest(models.Model):
+    STATUS_CHOICES = [
+        ('В обработке', 'В обработке'),
+        ('Отклонен', 'Отклонен'),
+        ('Подтвержден', 'Подтвержден'),
+    ]
+
+    user = models.ForeignKey('User', on_delete=models.PROTECT)
+    item = models.ForeignKey('Item', on_delete=models.PROTECT)
+    text = models.CharField('Причина вовзрата', max_length=500)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='В обработке')
+    def __str__(self):
+        return f'{self.user} - {self.item} - {self.status}'
+    class Meta:
+        verbose_name = 'Запрос'
+        verbose_name_plural = 'Запросы'

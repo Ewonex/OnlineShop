@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 from . import views
 from django.conf.urls.static import static
 from django.conf import settings
@@ -21,4 +21,6 @@ urlpatterns = [
     path('brands', views.brandsShow, name='brands'),
     path('vacansys', views.vacansysShow, name='vacansys'),
     path('garants', views.garantsShow, name='garants'),
+    path('returnInfo', views.returnInfoShow, name='returnInfo'),
+    path('returnBlank', views.returnBlankShow, name='returnBlank'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

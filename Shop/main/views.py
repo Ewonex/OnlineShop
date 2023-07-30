@@ -3,12 +3,12 @@ from django.contrib.auth.views import LoginView
 from django.db.models import Q
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
+from rest_framework import generics
 
-from .models import Item, FavoriteItem, Review, Brand, Vacansy
+from .models import Item, FavoriteItem, Review, Brand, Vacansy, ReturningRequest
 from .forms import RegistrationForm
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, DetailView
-
 
 def index(request):
     data = {
@@ -193,3 +193,23 @@ def vacansysShow(request):
     return render(request, 'main/vacansys.html', data)
 def garantsShow(request):
     return render(request, 'main/garants.html')
+
+def returnInfoShow(request):
+    return render(request, 'main/returnInfo.html')
+
+def returnBlankShow(request):
+    if request.user.is_anonymous:
+        return render(request, 'main/authorization.html')
+    elif request.method == 'POST':
+        item_id = request.POST.get('item')
+        reason = request.POST.get('reason')
+        try:
+            item = Item.objects.get(pk=item_id)
+            returning_request = ReturningRequest(user=request.user, item=item, text=reason)
+            returning_request.save()
+            return redirect('main_page')
+        except Item.DoesNotExist:
+            return render(request, 'main/returnBlank.html', {'error_message': 'Товар не найден'})
+
+    else:
+        return render(request, 'main/returnBlank.html')
