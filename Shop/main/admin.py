@@ -11,6 +11,7 @@ admin.site.register(FavoriteItem)
 admin.site.register(Review)
 admin.site.register(Article)
 admin.site.register(Vacansy)
+admin.site.register(BucketItem)
 admin.site.register(ReturningRequest, RequestAdmin)
 
 

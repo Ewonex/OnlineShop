@@ -9,6 +9,11 @@
 {% block bodyBlock %}
 
 <h1 class="h1ForTitles">Избранные товары:</h1>
+{% if items|length == 0 %}
+    <div style="text-align: center">
+        <h2>Пусто</h2>
+    </div>
+{% endif %}
 <div class="productShow">
 
 {% for item in items %}
@@ -31,7 +36,7 @@
               <div class="card__bottom">
                 <div class="card__prices">
                     <div class="card__price card__price--discount">
-                      {{ item.discount_price }}
+                      {{ item.discountPrice }}
                     </div>
                   <div class="card__price card__price--common">{{ item.price }}</div>
                 </div>

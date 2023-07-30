@@ -14,18 +14,18 @@
 </head>
 <body>
     <header>
-        <div><a href="{% url 'main_page' %}">Logo</a></div><div><a href="{% url 'catalog' %}?forMales=True">Мужское</a></div><div><a href="{% url 'catalog' %}?forFemales=True">Женское</a></div>
+        <div><a href="{% url 'main_page' %}" title="Главная">Logo</a></div><div><a href="{% url 'catalog' %}?forMales=True">Мужское</a></div><div><a href="{% url 'catalog' %}?forFemales=True">Женское</a></div>
         <div class="searchDiv">
             <form method="get" id="searchForm">
                 {% csrf_token %}
                 <input type="text" placeholder="Найти" name="searchBar" value="{{ search_query }}">
-                <a href="#" onclick="document.getElementById('searchForm').submit();">
+                <a href="#" onclick="document.getElementById('searchForm').submit();" title="Найти">
                     <i class="fas fa-search"></i>
                 </a>
             </form>
         </div>
         {% if request.user.is_authenticated %}
-            <div><a href="{% url 'profile' %}"><i class="fas fa-user-alt"></i></a></div><div><a href="{% url 'favorites' %}"><i class="fas fa-heart"></i></a></div><div><a href=""><i class="fas fa-shopping-cart"></i></a></div><div><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i></a></div>
+            <div><a href="{% url 'profile' %}" title="Профиль"><i class="fas fa-user-alt"></i></a></div><div><a href="{% url 'favorites' %}" title="Избранные"><i class="fas fa-heart"></i></a></div><div><a href="{% url 'cart' %}" title="Корзина"><i class="fas fa-shopping-cart"></i></a></div><div><a href="{% url 'logout' %}" title="Выход"><i class="fas fa-sign-out-alt"></i></a></div>
 
         {% else %}
             <div><a href="{% url 'authorization_page' %}">Войти</a></div>
@@ -51,11 +51,11 @@
             <span class="title">Интересное</span><br>
             <a href=""><span class="text">Новости</span></a><br>
             <span class="title">Соц. сети</span><br>
-            <a href="https://web.telegram.org"><span class="text"><i class="fab fa-telegram-plane"></i></span></a>
-            <a href="https://vk.com"><span class="text"><i class="fab fa-vk"></i></span></a>
-            <a href="https://www.instagram.com/"><span class="text"><i class="fab fa-instagram"></i></span></a>
-            <a href="https://www.facebook.com/"><span class="text"><i class="fab fa-facebook-square"></i></span></a>
-            <a href="https://twitter.com"><span class="text"><i class="fab fa-twitter"></i></span></a><br>
+            <a href="https://web.telegram.org" title="Телеграм"><span class="text"><i class="fab fa-telegram-plane"></i></span></a>
+            <a href="https://vk.com" title="ВК"><span class="text"><i class="fab fa-vk"></i></span></a>
+            <a href="https://www.instagram.com/" title="Инстаграм"><span class="text"><i class="fab fa-instagram"></i></span></a>
+            <a href="https://www.facebook.com/" title="Фейсбук"><span class="text"><i class="fab fa-facebook-square"></i></span></a>
+            <a href="https://twitter.com" title="Твиттер"><span class="text"><i class="fab fa-twitter"></i></span></a><br>
         </div>
         <div class="column">
             <span class="title">Оплата</span><br>
@@ -68,7 +68,7 @@
         </div>
         <div class="column">
             <span class="title">Способы получения товара</span><br>
-            <a href=""><span class="text">Самовывоз</span></a><br>
+            <a href="https://goo.gl/maps/vHo4t6p1SBLaQ3ak6"><span class="text">Самовывоз</span></a><br>
             <a><span class="text">Доставка</span></a><br>
             <span class="title">Гарантия</span><br>
             <a href="{% url 'garants' %}"><span class="text">Гарантийные обязательства</span></a><br>
@@ -77,9 +77,9 @@
         <div class="column">
             <a href="{% url 'aboutUs' %}" class="title">Контакты</a><br>
             <span class="text">Круглосуточная обработка заказов</span><br>
-            <a href=""><span class="text"><i class="fas fa-egg"></i> +375 33 764-77-45 </span></a><br>
-            <a href=""><span class="text">:) +375 25 764-77-45 </span></a><br>
-            <a href=""><span class="text"><i class="fab fa-telegram-plane"></i> +375 25 764-77-45 </span></a><br>
+            <a href="{% url 'aboutUs' %}" title="MTC"><span class="text"><i class="fas fa-egg"></i> +375 33 764-77-45 </span></a><br>
+            <a href="{% url 'aboutUs' %}" title="Life"><span class="text">:) +375 25 764-77-45 </span></a><br>
+            <a href="{% url 'aboutUs' %}" title="Velcome"><span class="text"><i class="fab fa-telegram-plane"></i> +375 25 764-77-45 </span></a><br>
             <a href="{% url 'reviews' %}"><div class="info_card">
                 <span class="text">Отзывов</span><br>
                 <span class="title">{{ reviews_count }}</span>

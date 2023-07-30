@@ -58,22 +58,33 @@
 
          <br>
         <span class="divForDiscount" style="margin-top: 10px;">
-            {{ discounted_price }}₽
+            {{ item.discountPrice }}₽
         </span>
 
      {% else %}
         {{ item.price }}BYN
      {% endif %}
      </div>
-     {% if request.user.is_authenticated %}
-         <button>Добавить в корзину</button>
-         <form method="post" action="{% url 'addToFavorites' %}" style="display: inline-block">
-             {% csrf_token %}
-             <input type="hidden" name="item_id" id="item_id" value="{{ item.id }}">
-             <button class="heartButton"><i class="fas fa-heart"></i></button>
-         </form>
+    {% if request.user.is_authenticated %}
+        <form method="post" action="{% url 'addToCart' %}" style="display: inline-block">
+            {% csrf_token %}
+            <input type="hidden" name="item_id" id="item_id1" value="{{ item.id }}">
+            <button  title="В избранные" style="width: 200px;">Добавить в корзину</button>
+        </form>
 
-     {% endif %}
+
+
+         <form method="post" action="{% url 'addToFavorites' %}" style="display: inline-block">
+            {% csrf_token %}
+             <input type="hidden" name="item_id" id="item_id2" value="{{ item.id }}">
+            {% if isFavorite %}
+
+                <button class="heartButtonActive" title="В избранные"><i class="fas fa-heart"></i></button>
+            {% else %}
+                <button class="heartButtonPassive" title="В избранные"><i class="fas fa-heart"></i></button>
+            {% endif %}
+         </form>
+    {% endif %}
 
  </div>
 

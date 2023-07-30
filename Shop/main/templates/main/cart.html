@@ -1,0 +1,54 @@
+ {% extends 'main/loyaout.html' %}
+
+{% block titleBlock %} Корзина {% endblock %}
+    {% block jsBlock %}
+      <script>
+
+      </script>
+    {% endblock %}
+{% block bodyBlock %}
+
+<h1 class="h1ForTitles">Корзина:</h1>
+<div class="cart_list_block">
+    {% if cart|length == 0 %}
+        <div style="text-align: center">
+            <h2>Пусто</h2>
+        </div>
+    {% endif %}
+{% for item in cart %}
+    <div class="cart_item">
+        <img src="{{ item.item.pic.url }}">
+        <div class="cart_item_content">
+            <span class="text_for_cart_item_title">{{ item.item.name }}</span> {{ item.amount }}шт.<br>
+            Цена 1 экземпляра - {{ item.item.discountPrice }}₽<br>
+            Общая цена - {{ item.totalPrice }}₽
+        </div>
+        <div class="cart_item_content">
+            <form method="post" action="{% url 'removeFromCart' %}">
+                {% csrf_token %}
+                <input type="hidden" value="{{ item.item.id }}" name="item_id" id="1{{ item.id }}">
+                <button class="cart_item_button">-</button>
+            </form>
+            <form method="post" action="{% url 'addToCart' %}">
+                {% csrf_token %}
+                <input type="hidden" value="{{ item.item.id }}" name="item_id" id="2{{ item.id }}">
+                <button class="cart_item_button">+</button>
+            </form>
+            <form method="post" action="{% url 'deleteFromCart' %}">
+                {% csrf_token %}
+                <input type="hidden" value="{{ item.item.id }}" name="item_id" id="3{{ item.id }}">
+                <button class="cart_item_button"><i class="fas fa-trash"></i></button>
+            </form>
+
+
+
+        </div>
+
+    </div>
+
+{% endfor %}
+</div>
+
+
+
+{% endblock %}

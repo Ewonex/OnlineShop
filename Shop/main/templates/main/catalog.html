@@ -44,7 +44,7 @@
 <div class="productShow">
 
 {% for item in items %}
-    <form method="post" style="display: inline-block; margin-right: 16px; margin-bottom: 20px;">
+    <form method="post" style="display: inline-block; margin-right: 16px; margin-bottom: 20px;" action="{% url 'addToCart' %}">
         {% csrf_token %}
         <div>
             <div class="card">
@@ -62,7 +62,7 @@
               <div class="card__bottom">
                 <div class="card__prices">
                     <div class="card__price card__price--discount">
-                      {{ item.discount_price }}
+                      {{ item.discountPrice }}
                     </div>
                   <div class="card__price card__price--common">{{ item.price }}</div>
                 </div>
@@ -73,7 +73,10 @@
                         {{ item.description }}
                     {% endif %}
                 </a>
+
+                <input type="hidden" value="{{ item.id }}" name="item_id" id="2{{ item.id }}">
                 <button class="card__add" type="submit">В корзину</button>
+
               </div>
             </div>
         </div>

@@ -33,6 +33,9 @@ class Item(models.Model):
     category = models.CharField('Категория товара',  max_length=20, default='Одежда')
     mark = models.FloatField('Оценка товара', validators=[MinValueValidator(0), MaxValueValidator(5)], default=5)
 
+    @property
+    def discountPrice(self):
+        return self.price * (100-self.discount)/100
 
     def __str__(self):
         return self.name
@@ -112,3 +115,16 @@ class ReturningRequest(models.Model):
     class Meta:
         verbose_name = 'Запрос'
         verbose_name_plural = 'Запросы'
+
+class BucketItem(models.Model):
+    user = models.ForeignKey('User', on_delete=models.PROTECT)
+    item = models.ForeignKey('Item', on_delete=models.PROTECT)
+    amount = models.IntegerField('Количество', default=1, validators=[MinValueValidator(1), MaxValueValidator(500)])
+    @property
+    def totalPrice(self):
+        return self.amount * self.item.discountPrice
+    def __str__(self):
+        return f"{self.user.username} - {self.item.name}"
+    class Meta:
+        verbose_name = 'Товар корзины'
+        verbose_name_plural = 'Товары корзины'

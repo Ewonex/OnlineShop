@@ -1,10 +1,7 @@
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.views import LoginView
-from django.db.models import Q
-from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
-from .models import Item, FavoriteItem, Review, Brand, Vacansy, ReturningRequest
+from .models import Item, FavoriteItem, Review, Brand, Vacansy, ReturningRequest, BucketItem
 from .forms import RegistrationForm
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, DetailView
@@ -92,8 +89,6 @@ def catalogShow(request):
             else:
                 print('добавлено в бакет')
                 # добавление элемента в бакет
-    for item in items:
-        item.discount_price = item.price * ((100 - item.discount) / 100)
     data = {
         'items': items,
         'search_query': search_query
@@ -103,7 +98,7 @@ def catalogShow(request):
 
 def profileShow(request):
     if request.user.is_anonymous:
-        return redirect('main_page')
+        return redirect('/authorization')
     else:
         return render(request, 'main/profile.html')
 
@@ -116,6 +111,7 @@ def clientCardShow(request):
 def giftCardsShow(request):
     return render(request, 'main/giftCards.html')
 
+
 class aboutItemShow(DetailView):
     model = Item
     template_name = 'main/aboutItem.html'
@@ -124,9 +120,9 @@ class aboutItemShow(DetailView):
         context = super().get_context_data(**kwargs)
         item = context['item']
         context['stars'] = range(1, 6)
-        if item.discount != 0:
-            discounted_price = item.price * (1 - item.discount / 100)
-            context['discounted_price'] = discounted_price
+        if self.request.user.is_authenticated:
+            favorite_item = FavoriteItem.objects.filter(user=self.request.user, item=item).first()
+            context['isFavorite'] = favorite_item
         return context
 
 def addToFavorites(request):
@@ -152,8 +148,6 @@ def favoritesShow(request):
         favorite_items = FavoriteItem.objects.filter(user=user)
         item_ids = favorite_items.values_list('item_id', flat=True)
         items = Item.objects.filter(id__in=item_ids)
-        for item in items:
-            item.discount_price = item.price * ((100 - item.discount) / 100)
         data = {
             'items': items
         }
@@ -161,12 +155,9 @@ def favoritesShow(request):
 
 def bestShow(request):
     items = Item.objects.order_by('-mark')
-    for item in items:
-        item.discount_price = item.price * ((100 - item.discount) / 100)
     data = {
         'items': items
     }
-
     return render(request, 'main/catalog.html', data)
 
 def reviewsShow(request):
@@ -209,6 +200,63 @@ def returnBlankShow(request):
             return redirect('main_page')
         except Item.DoesNotExist:
             return render(request, 'main/returnBlank.html', {'error_message': 'Товар не найден'})
-
     else:
         return render(request, 'main/returnBlank.html')
+
+def addToCart(request):
+    if request.method == 'POST' and request.user.is_authenticated:
+        user = request.user
+        itemId = request.POST.get('item_id')
+        item = Item.objects.get(id=itemId)
+        try:
+            bucketItem = BucketItem.objects.get(user=user, item=item)
+            bucketItem.amount += 1
+            bucketItem.save()
+        except BucketItem.DoesNotExist:
+            bucketItem = BucketItem(user=user, item=item)
+            bucketItem.save()
+        return redirect(f'/cart')
+    else:
+        return redirect('/authorization')
+
+def removeFromCart(request):
+    if request.method == 'POST' and request.user.is_authenticated:
+        user = request.user
+        itemId = request.POST.get('item_id')
+        item = Item.objects.get(id=itemId)
+        try:
+            bucketItem = BucketItem.objects.get(user=user, item=item)
+            bucketItem.amount -= 1
+            bucketItem.save()
+            if bucketItem.amount == 0:
+                bucketItem.delete()
+        except BucketItem.DoesNotExist:
+            return redirect(f'/cart')
+        return redirect(f'/cart')
+    else:
+        return redirect('/authorization')
+
+def deleteFromCart(request):
+    if request.method == 'POST' and request.user.is_authenticated:
+        user = request.user
+        itemId = request.POST.get('item_id')
+        item = Item.objects.get(id=itemId)
+        try:
+            bucketItem = BucketItem.objects.get(user=user, item=item)
+            bucketItem.delete()
+        except BucketItem.DoesNotExist:
+            return redirect(f'/cart')
+        return redirect(f'/cart')
+    else:
+        return redirect('/authorization')
+
+def cartShow(request):
+    if request.user.is_anonymous:
+        return redirect('/authorization')
+    else:
+        user = request.user
+        cart = BucketItem.objects.filter(user=user)
+        data = {
+            'cart': cart
+        }
+        return render(request, 'main/cart.html', data)

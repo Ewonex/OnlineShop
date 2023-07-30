@@ -639,11 +639,37 @@ footer .info_card {
     padding: 0 4px 0 4px;
     border-radius: 5px;
 }
+button:hover {
+    transition: all .4s ease;
+    color: #eb5959;
+    background-color: white;
+}
 
-.heartButton {
+.heartButtonActive {
+    width: 40px;
+    color: #eb5959;
+    background-color: white;
+}
+
+.heartButtonActive:hover {
+    transition: all .4s ease;
+    color: #2c2c2c;
+    background-color: #e9e9ed;
+}
+
+.heartButtonPassive {
     width: 40px;
     color: #2c2c2c;
 }
+
+.heartButtonPassive:hover {
+    transition: all .4s ease;
+    color: #eb5959;
+    background-color: white;
+}
+
+
+
 
 .reviewBlock {
     border: 2px solid #ccc;
@@ -709,5 +735,49 @@ footer .info_card {
     font-weight: bold;
 }
 
+.cart_list_block{
+    width: 100%;
+}
+
+.cart_item {
+    margin-bottom: 20px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 140px;
+    padding: 15px;
+}
+.cart_item img {
+    display: inline-block;
+    object-fit: cover;
+    height: 100%;
+    width: 110px;
+}
+
+.cart_item img:hover {
+    cursor: zoom-in;
+    transform: scale(1.05);
+    transition: all .4s ease;
+}
+
+.cart_item_content {
+    display: inline-block;
+    height: 100%;
+    vertical-align: top;
+    margin-right: 10px;
+}
+
+.text_for_cart_item_title {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.cart_item_button {
+    width: 100px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-right: 2px;
+}
 
 
