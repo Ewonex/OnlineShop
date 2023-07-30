@@ -20,7 +20,7 @@ class User(AbstractUser):
         super().save(*args, **kwargs)
 
 class Item(models.Model):
-    brand = models.ForeignKey('Brand', on_delete=models.SET_NULL, null=True, default=None)
+    brand = models.ForeignKey('Brand', on_delete=models.SET_NULL, null=True, default=None, blank=True)
     name = models.CharField('Название товара', max_length=30)
     price = models.IntegerField('Цена товара', validators=[MinValueValidator(0), MaxValueValidator(999999999)])
     discount = models.IntegerField('Скидка на товар', default=0, validators=[MinValueValidator(0), MaxValueValidator(100)])
