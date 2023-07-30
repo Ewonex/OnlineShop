@@ -3,7 +3,6 @@ from django.contrib.auth.views import LoginView
 from django.db.models import Q
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
-from rest_framework import generics
 
 from .models import Item, FavoriteItem, Review, Brand, Vacansy, ReturningRequest
 from .forms import RegistrationForm
