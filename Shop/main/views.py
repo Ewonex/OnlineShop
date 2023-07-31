@@ -1,8 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from .models import Item, FavoriteItem, Review, Brand, Vacansy, ReturningRequest, BucketItem, Order, ItemOfTheOrder, \
-    Article
+from .models import Item, FavoriteItem, Review, Brand, Vacansy, ReturningRequest, BucketItem, Order, ItemOfTheOrder#, Article
 from .forms import RegistrationForm
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, DetailView
@@ -280,10 +279,10 @@ def createOrder(request):
                 item.delete()
         return redirect('/')
 
-def newsShow(request):
-    news = Article.objects.order_by('dateOfPublish')
-    data = {
-        'news': news,
-    }
-    return render(request, 'main/news.html', data)
+# def newsShow(request):
+#     news = Article.objects.order_by('dateOfPublish')
+#     data = {
+#         'news': news,
+#     }
+#     return render(request, 'main/news.html', data)
 
