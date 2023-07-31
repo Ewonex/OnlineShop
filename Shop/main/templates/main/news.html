@@ -1,0 +1,44 @@
+ {% extends 'main/loyaout.html' %}
+
+{% block titleBlock %} Новости {% endblock %}
+{% block jsBlock %}
+    <script>
+
+    </script>
+{% endblock %}
+
+{% block bodyBlock %}
+
+    <h1 class="h1ForTitles">Актуальные новости:</h1>
+    {% if news|length == 0 %}
+        <div style="text-align: center">
+            <h2>Пусто</h2>
+        </div>
+    {% endif %}
+    <div class="cart_list_block" style="">
+        {% for article in news %}
+            <div class="article_block">
+                <div style="text-align: center; font-weight: bold;">
+                    <h2>{{ article.title }}</h2>
+                </div>
+                <div class="defTextWithRedStroke">
+                    {{ article.theme }}
+                </div>
+                {% if article.pic %}
+                <div style="text-align: center; margin: 10px;">
+                    <img class="article_pic" src="{{ article.pic.url }}">
+                </div>
+                {% endif %}
+                <div class="defTextWithRedStroke">
+                    {{ article.text }}
+                </div>
+                <div>
+                    {{ article.dateOfPublish }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+
+{% endblock %}

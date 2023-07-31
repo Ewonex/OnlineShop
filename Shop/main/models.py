@@ -77,10 +77,11 @@ class Vacansy(models.Model):
         verbose_name_plural = 'Вакансии'
 
 class Article(models.Model):
-    title = models.CharField('Заголовок статьи', max_length=30)
-    theme = models.CharField('Тема статьи', max_length=30)
-    text = models.CharField('Текст статьи', max_length=500)
-    dateOfPublishment = models.DateField('Дата публикации')
+    title = models.CharField('Заголовок статьи', max_length=100)
+    theme = models.CharField('Тема статьи', max_length=400)
+    text = models.CharField('Текст статьи', max_length=1000)
+    pic = models.ImageField('Картинка для статьи', null=True, default=None, blank=True)
+    dateOfPublish = models.DateField('Дата публикации', default=datetime.now)
     def __str__(self):
         return f'{self.title}'
     class Meta:
