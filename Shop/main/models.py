@@ -128,3 +128,33 @@ class BucketItem(models.Model):
     class Meta:
         verbose_name = 'Товар корзины'
         verbose_name_plural = 'Товары корзины'
+
+class Order(models.Model):
+    STATUS_CHOICES = [
+        ('В обработке', 'В обработке'),
+        ('Отклонен', 'Отклонен'),
+        ('Подтвержден', 'Подтвержден'),
+    ]
+
+    user = models.ForeignKey('User', on_delete=models.PROTECT)
+    datetime = models.DateTimeField('Дата отзыва', default=datetime.now)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='В обработке')
+    totalPrice = models.IntegerField('Цена заказа', validators=[MinValueValidator(0), MaxValueValidator(999999999)], blank=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.id} - {self.status}"
+    class Meta:
+        verbose_name = 'Заказ'
+        verbose_name_plural = 'Заказы'
+
+class ItemOfTheOrder(models.Model):
+    order = models.ForeignKey('Order', on_delete=models.CASCADE)
+    item = models.ForeignKey('Item', on_delete=models.PROTECT)
+    amount = models.IntegerField('Количество', default=1, validators=[MinValueValidator(1), MaxValueValidator(500)])
+    totalPrice = models.IntegerField('Цена заказа', validators=[MinValueValidator(0), MaxValueValidator(999999999)], blank=True)
+
+    def __str__(self):
+        return f"{self.order} - {self.item} - {self.amount}шт."
+    class Meta:
+        verbose_name = 'Продукт заказа'
+        verbose_name_plural = 'Продукты заказов'

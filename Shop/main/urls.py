@@ -27,4 +27,5 @@ urlpatterns = [
     path('addToCart', views.addToCart, name='addToCart'),
     path('removeFromCart', views.removeFromCart, name='removeFromCart'),
     path('deleteFromCart', views.deleteFromCart, name='deleteFromCart'),
+    path('createOrder', views.createOrder, name='createOrder'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

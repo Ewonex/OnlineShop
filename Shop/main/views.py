@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from .models import Item, FavoriteItem, Review, Brand, Vacansy, ReturningRequest, BucketItem
+from .models import Item, FavoriteItem, Review, Brand, Vacansy, ReturningRequest, BucketItem, Order, ItemOfTheOrder
 from .forms import RegistrationForm
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, DetailView
@@ -256,7 +256,25 @@ def cartShow(request):
     else:
         user = request.user
         cart = BucketItem.objects.filter(user=user)
+        totalPrice = sum(item.item.discountPrice * item.amount for item in cart)
         data = {
-            'cart': cart
+            'cart': cart,
+            'totalPrice': totalPrice
         }
         return render(request, 'main/cart.html', data)
+
+def createOrder(request):
+    if request.user.is_anonymous:
+        return redirect('/authorization')
+    else:
+        if request.method == 'POST':
+            user = request.user
+            cart = BucketItem.objects.filter(user=user)
+            totalPrice = sum(item.item.discountPrice * item.amount for item in cart)
+            order = Order(user=user, totalPrice=totalPrice)
+            order.save()
+            for item in cart:
+                itemOfTheOrder = ItemOfTheOrder(order=order, item=item.item, amount=item.amount, totalPrice=item.item.discountPrice * item.amount)
+                itemOfTheOrder.save()
+        return redirect('/')
+

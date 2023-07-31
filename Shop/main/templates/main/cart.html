@@ -48,7 +48,13 @@
 
 {% endfor %}
 </div>
-
+{% if cart|length != 0 %}
+    Общая стоимость: {{ totalPrice }}
+    <form method="post" action="{% url 'createOrder' %}">
+        {% csrf_token %}
+        <button type="submit">Оформить заказ</button>
+    </form>
+{% endif %}
 
 
 {% endblock %}
