@@ -83,12 +83,6 @@ def catalogShow(request):
                 items = items.filter(discount__gt=0)
             if price_from and price_to:
                 items = items.filter(price__gte=price_from, price__lte=price_to)
-        else:
-            if request.method == 'POST' and request.user.is_anonymous:
-                return redirect('/authorization')
-            else:
-                print('добавлено в бакет')
-                # добавление элемента в бакет
     data = {
         'items': items,
         'search_query': search_query
@@ -280,7 +274,7 @@ def createOrder(request):
         return redirect('/')
 
 def newsShow(request):
-    news = Article.objects.order_by('dateOfPublish')
+    news = Article.objects.order_by('-dateOfPublish')
     data = {
         'news': news,
     }

@@ -16,7 +16,7 @@
     <header>
         <div><a href="{% url 'main_page' %}" title="Главная">Logo</a></div><div><a href="{% url 'catalog' %}?forMales=True">Мужское</a></div><div><a href="{% url 'catalog' %}?forFemales=True">Женское</a></div>
         <div class="searchDiv">
-            <form method="get" id="searchForm">
+            <form method="get" action="{% url 'catalog' %}" id="searchForm">
                 {% csrf_token %}
                 <input type="text" placeholder="Найти" name="searchBar" value="{{ search_query }}">
                 <a href="#" onclick="document.getElementById('searchForm').submit();" title="Найти">
