@@ -28,5 +28,5 @@ urlpatterns = [
     path('removeFromCart', views.removeFromCart, name='removeFromCart'),
     path('deleteFromCart', views.deleteFromCart, name='deleteFromCart'),
     path('createOrder', views.createOrder, name='createOrder'),
-    #path('news', views.newsShow, name='news'),
+    path('news', views.newsShow, name='news'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
