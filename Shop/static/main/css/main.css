@@ -780,4 +780,20 @@ button:hover {
     margin-right: 2px;
 }
 
+.article_block {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 140px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.article_pic {
+    display: inline-block;
+    object-fit: cover;
+    min-height: 300px;
+    width: 500px;
+}
+
 
