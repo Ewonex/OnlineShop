@@ -12,7 +12,7 @@ class MainConfig(AppConfig):
         @receiver(post_save, sender=Review)
         def update_item_rating(sender, instance, **kwargs):
             item = instance.item
-            mark = Review.objects.filter(item=item).aggregate(mark=models.Avg('mark'))
+            mark = round(Review.objects.filter(item=item).aggregate(mark=models.Avg('mark')), 2)
             item.mark = mark['mark']
             item.save()
 

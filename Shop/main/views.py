@@ -114,6 +114,7 @@ class aboutItemShow(DetailView):
         context = super().get_context_data(**kwargs)
         item = context['item']
         context['stars'] = range(1, 6)
+        context['reviews'] = Review.objects.filter(item=item)
         if self.request.user.is_authenticated:
             favorite_item = FavoriteItem.objects.filter(user=self.request.user, item=item).first()
             context['isFavorite'] = favorite_item
@@ -279,4 +280,18 @@ def newsShow(request):
         'news': news,
     }
     return render(request, 'main/news.html', data)
+
+def sendTheReview(request):
+    if request.user.is_anonymous:
+        return redirect('/authorization')
+    else:
+        if request.method == 'POST':
+            user = request.user
+            itemId = request.POST.get('item_id')
+            item = Item.objects.get(id=itemId)
+            mark = request.POST.get('mark')
+            text = request.POST.get('textOfRev')
+            review = Review(user=user, item=item, mark=mark, text=text)
+            review.save()
+        return redirect('/')
 

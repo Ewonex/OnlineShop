@@ -14,7 +14,7 @@
         {% for brand in brands %}
             <a href="{{ brand.siteLink }}">
                 <div class="brand-card">
-                    <img src="{{ brand.pic.url }}">
+                    <img src="{{ brand.pic.url }}" alt="{{ brand.name }} photo">
                 </div>
             </a>
         {% endfor %}

@@ -43,9 +43,6 @@
             {{ item.mark }}
         </p>
 
-
-
-
     </div>
      <div class="divForPrice">
      {% if item.discount != 0 %}
@@ -86,6 +83,56 @@
          </form>
     {% endif %}
 
+    {% if request.user.is_authenticated %}
+        <div class="reviewInputBlockk">
+            <form action="{% url 'sendTheReview' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="item_id" id="item_id3" value="{{ item.id }}">
+                <div class="container_for_reviews">
+                    <input type="text" class="defaultInput" name="textOfRev" style="width: 700px; margin-top: 50px;" placeholder="Введите отзыв" required>
+                </div>
+                <div class="container_for_reviews">
+                    <select name="mark">
+                        <option value="5">5</option>
+                        <option value="4">4</option>
+                        <option value="3">3</option>
+                        <option value="2">2</option>
+                        <option value="1">1</option>
+                    </select>
+                </div>
+                <div class="container_for_reviews">
+                    <button type="submit">
+                        Отправить
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    {% endif %}
+
+
+
+     <div class="item_review_block">
+         {% for review in reviews %}
+         <div class="container_for_reviews">
+            <div class="reviewBlock" style="width: 700px; text-align: left;">
+                <p><span>{{ review.user.username }}</span> {{ review.item.name }}</p>
+                <p><span>
+                Оценка: {{ review.mark }}
+                </span>
+                {% for i in stars %}
+                    {% if i <= review.mark %}
+                    <span style="color: gold">&#9733;</span>
+                    {% else %}
+                    <span style="color: gold">&#9734;</span>
+                    {% endif %}
+                {% endfor %}
+                </p>
+                <p>{{ review.text }}</p>
+            </div>
+         </div>
+         {% endfor %}
+     </div>
  </div>
 
 
