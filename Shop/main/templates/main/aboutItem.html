@@ -40,7 +40,7 @@
                      <span style="color: gold">&#9734;</span> <!-- Пустая звезда в формате HTML entity -->
                 {% endif %}
             {% endfor %}
-            {{ item.mark }}
+            {{ item.mark|floatformat:2 }}
         </p>
 
     </div>
