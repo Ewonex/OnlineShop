@@ -5,6 +5,7 @@ from .models import Item, FavoriteItem, Review, Brand, Vacansy, ReturningRequest
 from .forms import RegistrationForm
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, DetailView
+from django.core.paginator import Paginator
 
 def index(request):
     data = {
@@ -83,8 +84,13 @@ def catalogShow(request):
                 items = items.filter(discount__gt=0)
             if price_from and price_to:
                 items = items.filter(price__gte=price_from, price__lte=price_to)
+    paginator = Paginator(items, 10)
+    page_number = request.GET.get('page')
+    page = paginator.get_page(page_number)
+
     data = {
-        'items': items,
+        #'items': items,
+        'items': page,
         'search_query': search_query
     }
     return render(request, 'main/catalog.html', data)
@@ -114,7 +120,7 @@ class aboutItemShow(DetailView):
         context = super().get_context_data(**kwargs)
         item = context['item']
         context['stars'] = range(1, 6)
-        context['reviews'] = Review.objects.filter(item=item)
+        context['reviews'] = Review.objects.filter(item=item).order_by('-mark')
         if self.request.user.is_authenticated:
             favorite_item = FavoriteItem.objects.filter(user=self.request.user, item=item).first()
             context['isFavorite'] = favorite_item
@@ -150,15 +156,21 @@ def favoritesShow(request):
 
 def bestShow(request):
     items = Item.objects.order_by('-mark')
+    paginator = Paginator(items, 10)
+    page_number = request.GET.get('page')
+    page = paginator.get_page(page_number)
     data = {
-        'items': items
+        'items': page
     }
     return render(request, 'main/catalog.html', data)
 
 def reviewsShow(request):
     reviews = Review.objects.order_by('-mark')
+    paginator = Paginator(reviews, 2)
+    page_number = request.GET.get('page')
+    page = paginator.get_page(page_number)
     data = {
-        'reviews': reviews,
+        'reviews': page,
         'stars': range(1, 6)
     }
     return render(request, 'main/reviews.html', data)
