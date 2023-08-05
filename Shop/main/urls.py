@@ -31,4 +31,5 @@ urlpatterns = [
     path('news', views.newsShow, name='news'),
     path('sendTheReview', views.sendTheReview, name='sendTheReview'),
     path('scrap', views.firstScrap, name='scrap'),
+    path('delItems', views.delItems, name='delItems'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

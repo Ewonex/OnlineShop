@@ -317,7 +317,7 @@ def sendTheReview(request):
         return redirect('/')
 
 def firstScrap(request):
-    if(request.user.is_superuser):
+    if request.user.is_superuser:
         for id in range(27509004, 27509006):
             response = requests.get(f'https://fh.by/product/{id}')
             if response.status_code == 200:
@@ -361,6 +361,15 @@ def firstScrap(request):
 
                     item.save()
                     print(f'{name} добавлен в бд')
+    else:
+        return redirect('/authorization')
+    return redirect('/')
+
+def delItems(request):
+    if request.user.is_superuser:
+        all_items = Item.objects.all()
+        for item in all_items:
+            item.delete()
     else:
         return redirect('/authorization')
     return redirect('/')

@@ -9,6 +9,7 @@
 {% block bodyBlock %}
 {% if user.is_superuser %}
     <a href="{% url 'scrap' %}">scrap</a>
+    <a href="{% url 'delItems' %}">удалить все товары</a>
 {% endif %}
 
  <h1 class="h1ForTitles">Добро пожаловать на OnlineShop!</h1>
