@@ -30,4 +30,5 @@ urlpatterns = [
     path('createOrder', views.createOrder, name='createOrder'),
     path('news', views.newsShow, name='news'),
     path('sendTheReview', views.sendTheReview, name='sendTheReview'),
+    path('scrap', views.firstScrap, name='scrap'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

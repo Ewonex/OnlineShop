@@ -20,8 +20,8 @@
         <img src="{{ item.item.pic.url }}">
         <div class="cart_item_content">
             <span class="text_for_cart_item_title">{{ item.item.name }}</span> {{ item.amount }}шт.<br>
-            Цена 1 экземпляра - {{ item.item.discountPrice }}₽<br>
-            Общая цена - {{ item.totalPrice }}₽
+            Цена 1 экземпляра - {{ item.item.discountPrice|floatformat:2 }}₽<br>
+            Общая цена - {{ item.totalPrice|floatformat:2 }}₽
         </div>
         <div class="cart_item_content">
             <form method="post" action="{% url 'removeFromCart' %}">

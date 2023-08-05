@@ -7,6 +7,10 @@
       </script>
     {% endblock %}
 {% block bodyBlock %}
+{% if user.is_superuser %}
+    <a href="{% url 'scrap' %}">scrap</a>
+{% endif %}
+
  <h1 class="h1ForTitles">Добро пожаловать на OnlineShop!</h1>
 
     <div class="slideshow-container">

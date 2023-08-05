@@ -56,13 +56,13 @@
                   />
                 </a>
                   {% if item.discount != 0 %}
-                    <div class="card__label">-{{ item.discount }}%</div>
+                    <div class="card__label">-{{ item.discount|floatformat:2 }}%</div>
                   {% endif %}
               </div>
               <div class="card__bottom">
                 <div class="card__prices">
                     <div class="card__price card__price--discount">
-                      {{ item.discountPrice }}
+                      {{ item.discountPrice|floatformat:2 }}
                     </div>
                   <div class="card__price card__price--common">{{ item.price }}</div>
                 </div>

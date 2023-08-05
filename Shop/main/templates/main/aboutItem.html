@@ -47,7 +47,7 @@
      <div class="divForPrice">
      {% if item.discount != 0 %}
          <span class="forDefaultPriceCrossed">
-            {{ item.price }}₽
+            {{ item.price|floatformat:2 }}₽
         </span>
          <span class="divForDiscount">
             -{{ item.discount }}%
@@ -55,7 +55,7 @@
 
          <br>
         <span class="divForDiscount" style="margin-top: 10px;">
-            {{ item.discountPrice }}₽
+            {{ item.discountPrice|floatformat:2 }}₽
         </span>
 
      {% else %}

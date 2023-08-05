@@ -21,10 +21,10 @@ class User(AbstractUser):
 
 class Item(models.Model):
     brand = models.ForeignKey('Brand', on_delete=models.SET_NULL, null=True, default=None, blank=True)
-    name = models.CharField('Название товара', max_length=30)
-    price = models.IntegerField('Цена товара', validators=[MinValueValidator(0), MaxValueValidator(999999999)])
+    name = models.CharField('Название товара', max_length=100)
+    price = models.FloatField('Цена товара', validators=[MinValueValidator(0), MaxValueValidator(999999999)], default=0)
     discount = models.IntegerField('Скидка на товар', default=0, validators=[MinValueValidator(0), MaxValueValidator(100)])
-    description = models.CharField('Описание товара', max_length=250)
+    description = models.CharField('Описание товара', max_length=1000)
     pic = models.ImageField('Картинка товара')
     tags = models.CharField('Тэги', max_length=500, default='')
     forMales = models.BooleanField('Для мужчин', default=True)

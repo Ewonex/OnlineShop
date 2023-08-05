@@ -1,11 +1,15 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+from django.core.files import File
 from .models import Item, FavoriteItem, Review, Brand, Vacansy, ReturningRequest, BucketItem, Order, ItemOfTheOrder, Article
 from .forms import RegistrationForm
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, DetailView
 from django.core.paginator import Paginator
+import requests
+from bs4 import BeautifulSoup
+from io import BytesIO
+from PIL import Image
 
 def index(request):
     data = {
@@ -51,6 +55,7 @@ def logout_user(request):
     return redirect('main_page')
 
 def catalogShow(request):
+
     search_query = ''
     items = Item.objects.order_by('id')
     if request.method == 'GET' and (request.GET.get('forMales', None) or request.GET.get('forFemales', None) or request.GET.get('onSale', None) or request.GET.get('searchBar')):
@@ -307,3 +312,51 @@ def sendTheReview(request):
             review.save()
         return redirect('/')
 
+def firstScrap(request):
+    if(request.user.is_superuser):
+        for id in range(27509004, 27509006):
+            response = requests.get(f'https://fh.by/product/{id}')
+            if response.status_code == 200:
+                #print(id)
+                soup = BeautifulSoup(response.content, 'html.parser')
+                no_stock_button = soup.find('button', text='Нет в наличии')
+                if not no_stock_button:
+                    name = soup.find('span', {'class': 'Product_desc__7j3VE'}).text.strip()
+                    description = soup.find('p', {'class': 'Product_description__0cDEF'}).text.strip()
+                    picUrl = soup.find('div', {'class': 'swiper-zoom-container'}).find('img')['src']
+                    response = requests.get(picUrl)
+                    picCont = BytesIO(response.content)
+
+                    category = name.split()[0]
+
+                    item = Item(name=name, description=description, category=category)
+                    item.pic.save('image.jpg', File(picCont), save=True)
+
+                    price = 0
+                    try:
+                        discount_tag = soup.find('div', {
+                            'class': 'ProductFeature_sale___YGT_ ProductFeature_productFeature__HBw3O'})
+                        if discount_tag:
+                            item.discount = discount_tag.find('p').text.strip().replace('%', '')
+                            price = soup.find('div', {
+                                'class': 'Price_priceContainer__oBndf'}).find('div', {
+                                'class': 'Price_font__eN9sO Price_oldPrice__sAYAY Price_newPrice__kec1A Price_fontProductPage__YsM_S'}).text.strip()[
+                                    :-4].replace(',', '.').replace(' ', '')
+
+                        price_container = soup.find('div', {'class': 'Price_priceContainer__oBndf'})
+                        if price_container:
+                            price_tag = price_container.find('div', {
+                                'class': 'Price_font__eN9sO Price_oldPrice__sAYAY Price_fontProductPage__YsM_S'})
+                            if price_tag:
+                                price = price_tag.text.strip()[:-4].replace(',', '.').replace(' ', '')
+
+                    except AttributeError:
+                        price = 0
+
+                    item.price = price
+
+                    item.save()
+                    print(f'{name} добавлен в бд')
+    else:
+        return redirect('/authorization')
+    return redirect('/')
