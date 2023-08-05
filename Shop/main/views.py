@@ -9,7 +9,7 @@ from django.core.paginator import Paginator
 import requests
 from bs4 import BeautifulSoup
 from io import BytesIO
-from PIL import Image
+from urllib.parse import urlencode
 
 def index(request):
     data = {
@@ -93,8 +93,12 @@ def catalogShow(request):
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
 
+    # query_params = request.GET.copy()
+    # query_params.pop('page', None)
+
     data = {
         #'items': items,
+        # 'query_params': urlencode(query_params),
         'items': page,
         'search_query': search_query
     }

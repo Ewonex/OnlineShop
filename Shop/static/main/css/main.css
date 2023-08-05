@@ -356,6 +356,10 @@ footer .info_card {
   color: #fff;
 }
 
+.card a {
+    min-height: 72px;
+}
+
 .card__bottom {
   display: flex;
   flex-direction: column;

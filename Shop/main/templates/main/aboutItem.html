@@ -19,11 +19,12 @@
             </p>
         {% endif %}
         <p class="defTextWithRedStroke" style="font-weight: bold">
-            Для
-            {% if item.forMales == True %}
-            мужчин
-            {% else %}
-            женщин
+            {% if item.forMales and item.forFemales %}
+                Товар для мужчин и женщин
+            {% elif item.forMales %}
+                Товар для мужчин
+            {% elif item.forFemales %}
+                Товар для женщин
             {% endif %}<br>
         </p>
         <p class="defTextWithRedStroke">Артикул товара: {{ item.id }}</p>
