@@ -55,7 +55,6 @@ def logout_user(request):
     return redirect('main_page')
 
 def catalogShow(request):
-
     search_query = ''
     items = Item.objects.order_by('id')
     if request.method == 'GET' and (request.GET.get('forMales', None) or request.GET.get('forFemales', None) or request.GET.get('onSale', None) or request.GET.get('searchBar')):
@@ -93,12 +92,12 @@ def catalogShow(request):
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
 
-    # query_params = request.GET.copy()
-    # query_params.pop('page', None)
+    query_params = request.GET.copy()
+    query_params.pop('page', None)
 
     data = {
         #'items': items,
-        # 'query_params': urlencode(query_params),
+        'query_params': urlencode(query_params),
         'items': page,
         'search_query': search_query
     }
@@ -175,7 +174,7 @@ def bestShow(request):
 
 def reviewsShow(request):
     reviews = Review.objects.order_by('-mark')
-    paginator = Paginator(reviews, 2)
+    paginator = Paginator(reviews, 5)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
     data = {
@@ -318,7 +317,7 @@ def sendTheReview(request):
 
 def firstScrap(request):
     if request.user.is_superuser:
-        for id in range(27509004, 27509006):
+        for id in range(27509000, 27509100):
             response = requests.get(f'https://fh.by/product/{id}')
             if response.status_code == 200:
                 #print(id)

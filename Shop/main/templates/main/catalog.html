@@ -88,14 +88,14 @@
     <div class="pagination">
         <span class="step-links">
             {% if items.has_previous %}
-                <a href="?page=1">Первая</a>
-                <a href="?page={{ items.previous_page_number }}"><i class="fas fa-backward"></i></a>
+                <a href="?{{ query_params }}&page=1">Первая</a>
+                <a href="?{{ query_params }}&page={{ items.previous_page_number }}"><i class="fas fa-backward"></i></a>
             {% endif %}
             <span class="current">
                 {{ items.number }} из {{ items.paginator.num_pages }}.
             </span>
             {% if items.has_next %}
-                <a href="?page={{ items.next_page_number }}"><i class="fas fa-forward"></i></a>
+                <a href="?{{ query_params }}&page={{ items.next_page_number }}"><i class="fas fa-forward"></i></a>
             {% endif %}
         </span>
     </div>

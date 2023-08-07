@@ -55,8 +55,8 @@ class Brand(models.Model):
         verbose_name_plural = 'Бренды'
 
 class FavoriteItem(models.Model):
-    user = models.ForeignKey('User', on_delete=models.PROTECT)
-    item = models.ForeignKey('Item', on_delete=models.PROTECT)
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
+    item = models.ForeignKey('Item', on_delete=models.CASCADE)
     def __str__(self):
         return f'{self.user} - {self.item}'
     class Meta:
@@ -89,8 +89,8 @@ class Article(models.Model):
         verbose_name_plural = 'Статьи'
 
 class Review(models.Model):
-    user = models.ForeignKey('User', on_delete=models.PROTECT)
-    item = models.ForeignKey('Item', on_delete=models.PROTECT)
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
+    item = models.ForeignKey('Item', on_delete=models.CASCADE)
     mark = models.IntegerField('Оценка', default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
     text = models.CharField('Текст отзыва', max_length=300)
     datetime = models.DateTimeField('Дата отзыва', default=datetime.now)
@@ -107,8 +107,8 @@ class ReturningRequest(models.Model):
         ('Подтвержден', 'Подтвержден'),
     ]
 
-    user = models.ForeignKey('User', on_delete=models.PROTECT)
-    item = models.ForeignKey('Item', on_delete=models.PROTECT)
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
+    item = models.ForeignKey('Item', on_delete=models.CASCADE)
     text = models.CharField('Причина вовзрата', max_length=500)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='В обработке')
     def __str__(self):
@@ -118,8 +118,8 @@ class ReturningRequest(models.Model):
         verbose_name_plural = 'Запросы'
 
 class BucketItem(models.Model):
-    user = models.ForeignKey('User', on_delete=models.PROTECT)
-    item = models.ForeignKey('Item', on_delete=models.PROTECT)
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
+    item = models.ForeignKey('Item', on_delete=models.CASCADE)
     amount = models.IntegerField('Количество', default=1, validators=[MinValueValidator(1), MaxValueValidator(500)])
     @property
     def totalPrice(self):
@@ -137,7 +137,7 @@ class Order(models.Model):
         ('Подтвержден', 'Подтвержден'),
     ]
 
-    user = models.ForeignKey('User', on_delete=models.PROTECT)
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
     datetime = models.DateTimeField('Дата отзыва', default=datetime.now)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='В обработке')
     totalPrice = models.IntegerField('Цена заказа', validators=[MinValueValidator(0), MaxValueValidator(999999999)], blank=True)
@@ -150,7 +150,7 @@ class Order(models.Model):
 
 class ItemOfTheOrder(models.Model):
     order = models.ForeignKey('Order', on_delete=models.CASCADE)
-    item = models.ForeignKey('Item', on_delete=models.PROTECT)
+    item = models.ForeignKey('Item', on_delete=models.CASCADE)
     amount = models.IntegerField('Количество', default=1, validators=[MinValueValidator(1), MaxValueValidator(500)])
     totalPrice = models.IntegerField('Цена заказа', validators=[MinValueValidator(0), MaxValueValidator(999999999)], blank=True)
 
