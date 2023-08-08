@@ -126,6 +126,7 @@ footer .info_card {
     max-height: 500px;
     max-width:  1000px;
     object-fit: cover;
+    cursor: pointer;
 }
 
 .prev, .next {
