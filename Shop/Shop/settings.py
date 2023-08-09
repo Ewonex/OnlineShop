@@ -142,11 +142,11 @@ AUTH_USER_MODEL = 'main.User'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-CELERY_BROKER_URL = 'pyamqp://localhost'  # Используем RabbitMQ, укажите URL вашего брокера
-CELERY_RESULT_BACKEND = 'rpc://'
-
-# Настройки для выполнения задач в фоне (опционально)
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'UTC'
+# CELERY_BROKER_URL = 'pyamqp://localhost'  # Используем RabbitMQ, укажите URL вашего брокера
+# CELERY_BROKER_URL = 'pyamqp://46.101.207.123'  # Используем RabbitMQ, укажите URL вашего брокера
+# CELERY_RESULT_BACKEND = 'rpc://'
+#
+# CELERY_ACCEPT_CONTENT = ['json']
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_RESULT_SERIALIZER = 'json'
+# CELERY_TIMEZONE = 'UTC'
