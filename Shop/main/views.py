@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 from io import BytesIO
 from urllib.parse import urlencode
 from elasticsearch import Elasticsearch
-# from .tasks import Scrap
+from .tasks import Scrap
 
 def index(request):
     data = {
@@ -318,7 +318,7 @@ def sendTheReview(request):
         return redirect('/')
 
 def firstScrap(request):
-    # Scrap.delay()
+    Scrap.delay()
     # if request.user.is_superuser:
     #     for id in range(27509000, 27509100):
     #         response = requests.get(f'https://fh.by/product/{id}')
