@@ -16,3 +16,5 @@ class MainConfig(AppConfig):
             item.mark = mark['mark']
             item.save()
 
+
+

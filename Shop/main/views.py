@@ -10,6 +10,7 @@ import requests
 from bs4 import BeautifulSoup
 from io import BytesIO
 from urllib.parse import urlencode
+from elasticsearch import Elasticsearch
 
 def index(request):
     data = {
@@ -60,7 +61,7 @@ def catalogShow(request):
     if request.method == 'GET' and (request.GET.get('forMales', None) or request.GET.get('forFemales', None) or request.GET.get('onSale', None) or request.GET.get('searchBar')):
         if request.GET.get('searchBar'):
             search_query = request.GET.get('searchBar', '')
-            items = items.filter(description__icontains=search_query)
+            items = items.filter(description__icontains=search_query.lower()) | Item.objects.filter(name__icontains=search_query.lower()) | Item.objects.filter(category__icontains=search_query.lower())
         else:
             if request.GET.get('onSale', None):
                 items = items.filter(discount__gt=0)
@@ -372,3 +373,4 @@ def delItems(request):
     else:
         return redirect('/authorization')
     return redirect('/')
+
